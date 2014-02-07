@@ -31,7 +31,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import object.DataManager;
-import object.History;
+import object.HistoryLearner;
 import utility.StringUtility;
 
 import com.toedter.calendar.JDateChooser;
@@ -113,7 +113,7 @@ public class NKFrame extends JFrame
   /**
    * Location learnining.
    */
-  private History my_location_learner = new History();
+  private HistoryLearner my_location_learner = new HistoryLearner();
 
   /**
    * Creates the frame by calling the JFrame constructor, then creates custom
@@ -127,7 +127,12 @@ public class NKFrame extends JFrame
     start();
   }
 
-  public History getLocationLearner()
+  /**
+   * Gets the location learner.
+   * 
+   * @return The specific location learner.
+   */
+  public HistoryLearner getLocationLearner()
   {
     return my_location_learner;
   }
@@ -181,7 +186,12 @@ public class NKFrame extends JFrame
     sync();
   }
 
-  public boolean getFilter()
+  /**
+   * Whether the filter button is selected.
+   * 
+   * @return True if filter button selected, false if otherwise.
+   */
+  public boolean isFilterSelected()
   {
     return my_order_filter_button.isSelected();
   }
@@ -303,7 +313,6 @@ public class NKFrame extends JFrame
           {
             final String item = my_location_selection_box.getItemAt(i);
             final String[] item_split = item.split(", ");
-            final int item_split_size = item_split.length;
             final int location_index = 0;
             final String location = item_split[location_index];
 

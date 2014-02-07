@@ -1,19 +1,33 @@
+
 package utility;
-
-
 
 import java.util.List;
 
 import object.IntegerAggregator;
 
+/**
+ * Utility to manipulate collections of objects.
+ * 
+ * @author padriaan
+ * @version 1.
+ */
 public final class CollectionUtility
 {
 
+  /**
+   * Prevents instantiation.
+   */
   private CollectionUtility()
   {
 
   }
 
+  /**
+   * Gets the mode object in the list.
+   * 
+   * @param the_list List of object.
+   * @return Mode object n the list.
+   */
   public static String getMode(final List<String> the_list)
   {
     final IntegerAggregator aggie = new IntegerAggregator();
@@ -22,6 +36,6 @@ public final class CollectionUtility
       aggie.increment(i);
     }
     final String mode = aggie.getMode();
-    return mode;  
+    return mode;
   }
 }

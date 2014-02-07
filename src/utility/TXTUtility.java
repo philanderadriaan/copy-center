@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 package utility;
 
@@ -11,20 +8,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author padriaan
+ * Utility for processing text files.
  * 
+ * @author padriaan
+ * @version 1
  */
 public final class TXTUtility
 {
 
   /**
-   * 
+   * Prevents instantiation.
    */
   private TXTUtility()
   {
-    // TODO Auto-generated constructor stub
   }
 
+  /**
+   * Reads a text file.
+   * 
+   * @param the_path Path to the text file.
+   * @return A list of lines extracted from the text file.
+   * @throws IOException For reading or writing errors.
+   */
   public static List<String> read(final String the_path) throws IOException
   {
     final List<String> data = new ArrayList<String>();

@@ -11,18 +11,25 @@ import utility.CSVUtility;
 import utility.TXTUtility;
 
 /**
+ * This class contains mechanism to learn about user's location according to their histories.
  * 
  * @author padriaan
- * 
+ * @version 1
  */
-public class History
+public class HistoryLearner
 {
   /**
    * Path of location history.
    */
   private static final String HISTORY_PATH = "Skynet\\Skynet.csv";
+  /**
+   * Path to the file containing the exclusions.
+   */
   private static final String EXCLUSION_PATH = "Skynet\\Exclusion.txt";
 
+  /**
+   * 
+   */
   List<String> my_exclusion_list = TXTUtility.read(EXCLUSION_PATH);
 
   /**
@@ -37,21 +44,27 @@ public class History
    * 
    * @throws IOException If history file not found.
    */
-  public History() throws IOException
+  public HistoryLearner() throws IOException
   {
 
-    List<List<String>> histories = CSVUtility.read(HISTORY_PATH);
+    final List<List<String>> histories = CSVUtility.read(HISTORY_PATH);
 
     for (List<String> i : histories)
     {
-      String user = i.get(0);
+      final String user = i.get(0);
       i.remove(0);
-      LocationHistory history = new LocationHistory(i, my_exclusion_list);
+      final LocationHistory history = new LocationHistory(i, my_exclusion_list);
       my_histories.put(user, history);
     }
   }
 
-  public void add(String the_name, String the_location)
+  /**
+   * Adds a location history to the user.
+   * 
+   * @param the_name Name of the user.
+   * @param the_location Location to be added.
+   */
+  public void add(final String the_name, final String the_location)
   {
     LocationHistory history;
     if (!my_histories.containsKey(the_name))
@@ -66,31 +79,50 @@ public class History
     history.add(the_location);
   }
 
-  public String getMode(String the_name)
+  /**
+   * Gets the majority location for a user.
+   * 
+   * @param the_name User in question.
+   * @return Location which the user is most likely be.
+   */
+  public String getMode(final String the_name)
   {
     return my_histories.get(the_name).getMode();
   }
 
+  /**
+   * Saves the history into a CSV file.
+   * 
+   * @throws IOException For read/write errors.
+   */
   public void save() throws IOException
   {
-    List<List<String>> histories = new ArrayList<List<String>>();
+    final List<List<String>> histories = new ArrayList<List<String>>();
     for (String i : my_histories.keySet())
     {
-      LocationHistory history = my_histories.get(i);
-      List<String> row = history.getList();
+      final LocationHistory history = my_histories.get(i);
+      final List<String> row = history.getList();
       row.add(0, i);
       histories.add(row);
     }
-    List<List<String>> file_histories = CSVUtility.read(HISTORY_PATH);
     CSVUtility.write(HISTORY_PATH, histories);
   }
 
-  public boolean hasHistory(String the_name)
+  /**
+   * Whether a user has history or not.
+   * 
+   * @param the_name Name of user in question.
+   * @return True if user has history, false if otherwise.
+   */
+  public boolean hasHistory(final String the_name)
   {
-    boolean has_history = my_histories.containsKey(the_name);
+    final boolean has_history = my_histories.containsKey(the_name);
     return has_history;
   }
   
+  /**
+   * Clears all history.
+   */
   public void clear()
   {
     my_histories = new HashMap<String, LocationHistory>();

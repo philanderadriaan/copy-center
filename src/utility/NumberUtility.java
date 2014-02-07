@@ -89,6 +89,13 @@ public final class NumberUtility
     new SimpleDateFormat("M/d/y").format(the_date);
   }
 
+  /**
+   * Gets the modulo with only positive results.
+   * 
+   * @param operand_1 First operand.
+   * @param operand_2 Second operand.
+   * @return Modulo of first operand by second operand with only positive results.
+   */
   public static int getPositiveModulo(int operand_1, int operand_2)
   {
     return (operand_1 % operand_2 + operand_2) % operand_2;

@@ -94,8 +94,7 @@ public class AddOrderAction extends AbstractAction
     
     my_frame.getLocationLearner().add(input.get(2) + " " + input.get(1), input.get(0));
     
-    final String order_file_name = data_manager.getOrderFileName();
-    final List<List<String>> new_data = data_manager.getOrder(my_frame.getFilter());
+    final List<List<String>> new_data = data_manager.getOrder(my_frame.isFilterSelected());
     my_frame.drawTable(new_data,
                        my_frame.getDataManager().getHeaderMap()
                            .get("Table\\" + my_frame.getDataManager().getOrderFileName()));

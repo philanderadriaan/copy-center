@@ -18,7 +18,6 @@ import javax.swing.JTextPane;
 @SuppressWarnings("serial")
 public class ProductPerTextPane extends JTextPane
 {
-  private static final int MONTHS_PER_YEAR = 12;
 
   /**
    * Creates the text pane.
@@ -30,7 +29,6 @@ public class ProductPerTextPane extends JTextPane
   {
     final Calendar calendar = Calendar.getInstance();
     final Date today = calendar.getTime();
-    today.setMonth((today.getMonth() - 1) % MONTHS_PER_YEAR);
     final Format date_formatter = new SimpleDateFormat("MMMM y");
     final String this_month = date_formatter.format(today);
     

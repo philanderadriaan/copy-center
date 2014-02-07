@@ -12,7 +12,13 @@ import java.util.Date;
  */
 public final class DateUtility
 {
+  /**
+   * First month of the school year.
+   */
   private static final int FIRST_MONTH = 9;
+  /**
+   * Number of months per year.
+   */
   private static final int MONTHS_PER_YEAR = 12;
   /**
    * Calendar instance containing today's date.
@@ -23,11 +29,6 @@ public final class DateUtility
    * Today's date.
    */
   private static Date my_date = my_calendar.getTime();
-
-  /**
-   * Format for tables and inputs.
-   */
-  private static Format my_format = new SimpleDateFormat("M/d/yyyy");
 
   /**
    * Format for reports.
@@ -126,7 +127,7 @@ public final class DateUtility
   {
     final String[] date_split = the_date_string.split("/");
     final int month_index = 0;
-    final String month_string = date_split[0];
+    final String month_string = date_split[month_index];
     final int month = Integer.valueOf(month_string);
     return month;
   }

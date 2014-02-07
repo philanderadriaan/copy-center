@@ -29,8 +29,17 @@ import utility.XLSUtility;
  */
 public class DataManager
 {
+  /**
+   * Number of months per year.
+   */
   private static final int MONTHS_PER_YEAR = 12;
+  /**
+   * December's number.
+   */
   private static final int DECEMBER = 12;
+  /**
+   * First month of the school year.
+   */
   private static final int FIRST_MONTH = 9;
   /**
    * File name for the order table.
@@ -100,11 +109,19 @@ public class DataManager
 
   }
 
+  /**
+   * gets the map of all headers of the tables.
+   * 
+   * @return Map containing the headers of the table.
+   */
   public Map<String, List<String>> getHeaderMap()
   {
     return my_header_map;
   }
 
+  /**
+   * Populates the header of the tables.
+   */
   private void setTableHeader()
   {
     final List<String> order_header = new ArrayList<String>();
@@ -143,7 +160,7 @@ public class DataManager
   private void setDate()
   {
     final Calendar today = Calendar.getInstance();
-    final Date today_date = today.getTime();
+    //final Date today_date = today.getTime();
     my_month = today.get(Calendar.MONTH) + 1;
     my_year = today.get(Calendar.YEAR);
 
@@ -225,9 +242,6 @@ public class DataManager
       final boolean is_valid_order_file =
           is_order_file && order_file_name.equalsIgnoreCase(file_name);
       final boolean is_valid_file = !is_order_file || is_valid_order_file;
-
-      final boolean user = i.getName().equals("User.csv");
-
       if (is_valid_file)
       {
         my_data.put(i.getPath(), CSVUtility.read(i.getPath()));

@@ -19,21 +19,43 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+/**
+ * Class to benchmark speeds between reading and writing with POI HSSF on XLS
+ * files and BufferedReader/BufferedWriter on CSV files.
+ * 
+ * @author padriaan
+ * 
+ */
 public class Benchmark
 {
+  /**
+   * Maximum decimal points.
+   */
   private static final int DECIMAL_POINTS = 3;
-  public static void main(String[] the_args) throws IOException
+
+  /**
+   * Starts the tests.
+   * 
+   * @param the_args Command line arguments.
+   * @throws IOException For reading and writing errors.
+   */
+  public static void main(final String[] the_args) throws IOException
   {
     testCSV();
     testXLS();
   }
 
+  /**
+   * Test the CSV file.
+   * 
+   * @throws IOException For read/write errors.
+   */
   private static void testCSV() throws IOException
   {
-    long start = System.currentTimeMillis();
-    List<List<String>> data = new ArrayList<List<String>>();
+    final long start = System.currentTimeMillis();
+    final List<List<String>> data = new ArrayList<List<String>>();
 
-    BufferedReader reader = new BufferedReader(new FileReader("test.csv"));
+    final BufferedReader reader = new BufferedReader(new FileReader("test.csv"));
     String line = reader.readLine();
     while (line != null)
     {
@@ -45,8 +67,8 @@ public class Benchmark
     }
     reader.close();
 
-    BufferedWriter writer = new BufferedWriter(new FileWriter("test2.csv"));
-    StringBuilder builder = new StringBuilder();
+    final BufferedWriter writer = new BufferedWriter(new FileWriter("test2.csv"));
+    final StringBuilder builder = new StringBuilder();
     for (List<String> i : data)
     {
       for (String j : i)
@@ -59,17 +81,22 @@ public class Benchmark
     writer.write(builder.toString());
     writer.close();
 
-    long end = System.currentTimeMillis();
+    final long end = System.currentTimeMillis();
     System.out.println("CSV: " + (end - start) + "ms");
   }
 
+  /**
+   * Tests the XLS file.
+   * 
+   * @throws IOException For read/write errors.
+   */
   private static void testXLS() throws IOException
   {
-    long start = System.currentTimeMillis();
+    final long start = System.currentTimeMillis();
 
     final List<List<String>> data = new ArrayList<List<String>>();
-    FileInputStream file = new FileInputStream(new File("test.xls"));
-    Workbook book = new HSSFWorkbook(file);
+    final FileInputStream file = new FileInputStream(new File("test.xls"));
+    final Workbook book = new HSSFWorkbook(file);
     file.close();
 
     final Sheet sheet = book.getSheetAt(0);
@@ -78,7 +105,7 @@ public class Benchmark
       final List<String> row_data = new ArrayList<String>();
       for (int i = 0; i < row.getLastCellNum(); i++)
       {
-        Cell cell = row.getCell(i, Row.CREATE_NULL_AS_BLANK);
+        final Cell cell = row.getCell(i, Row.CREATE_NULL_AS_BLANK);
         switch (cell.getCellType())
         {
           case Cell.CELL_TYPE_STRING:
@@ -108,7 +135,7 @@ public class Benchmark
       data.add(row_data);
     }
 
-    String path = "test2.xls";
+    final String path = "test2.xls";
 
     final Workbook book2 = new HSSFWorkbook();
     final Sheet sheet2 = book2.createSheet(path);
@@ -130,10 +157,16 @@ public class Benchmark
     book2.write(output);
     output.close();
 
-    long end = System.currentTimeMillis();
+    final long end = System.currentTimeMillis();
     System.out.println("XLS: " + (end - start) + "ms");
   }
 
+  /**
+   * Gets the number from the input.
+   * 
+   * @param the_number Number from the input.
+   * @return String representation of the number.
+   */
   public static String getNumber(final double the_number)
   {
     BigDecimal decimal = new BigDecimal(the_number);
