@@ -59,7 +59,7 @@ public class CSVUtility
   }
 
   /**
-   * Writes the data from a 2D list to 
+   * Writes the data from a 2D list to the file defined by the path.
    * 
    * @param the_path
    * @param the_data

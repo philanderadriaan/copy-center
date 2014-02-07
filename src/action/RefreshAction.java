@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
 
 /**
  * Action to refresh the entire program, used to update the tables or other
- * information to see what the others have entered after the other
+ * information to see what the others have entered after the other made some
+ * changes to the table files.
  * 
  * @author Phil Adriaan
  * @version 1
@@ -42,7 +43,7 @@ public class RefreshAction extends AbstractAction
     {
       my_frame.getDataManager().refresh();
     }
-    catch (IOException e)
+    catch (final IOException e)
     {
       JOptionPane.showMessageDialog(null, e.getMessage(), null, JOptionPane.ERROR_MESSAGE);
     }
@@ -50,7 +51,7 @@ public class RefreshAction extends AbstractAction
     {
       my_frame.setPanel(my_frame.getPanel(), null);
     }
-    catch (IOException e)
+    catch (final IOException e)
     {
       JOptionPane.showMessageDialog(null, e.getMessage(), null, JOptionPane.ERROR_MESSAGE);
     }
