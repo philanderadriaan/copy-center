@@ -119,7 +119,7 @@ public class NKFrame extends JFrame
    * Creates the frame by calling the JFrame constructor, then creates custom
    * elements that is specifically designed for the program.
    * 
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public NKFrame() throws IOException
   {
@@ -137,7 +137,7 @@ public class NKFrame extends JFrame
    * the frame, and set the default close action. The program the reads all the
    * tables and populate the data manager with its data.It
    * 
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   private void start() throws IOException
   {
@@ -163,13 +163,13 @@ public class NKFrame extends JFrame
 
     addWindowListener(new WindowAdapter()
     {
-      public void windowClosing(WindowEvent the_event)
+      public void windowClosing(final WindowEvent the_event)
       {
         try
         {
           my_location_learner.save();
         }
-        catch (IOException exception)
+        catch (final IOException exception)
         {
           JOptionPane.showMessageDialog(null, the_event.toString(), null,
                                         JOptionPane.ERROR_MESSAGE);
@@ -245,8 +245,9 @@ public class NKFrame extends JFrame
    * @param the_data A 2D list of data to be updated on the table. The data
    *          represented on the table will be in the exact same structure as
    *          the data ordered in the 2D list.
+   * @param the_header Header of the table.
    */
-  public void drawTable(final List<List<String>> the_data, List<String> the_header)
+  public void drawTable(final List<List<String>> the_data, final List<String> the_header)
   {
     my_current_table = new NKTable(the_data, the_header);
 
@@ -292,10 +293,10 @@ public class NKFrame extends JFrame
       {
         final String[] s = ((String) the_event.getItem()).split(", ");
 
-        String last_name = s[0];
-        String first_name = s[1];
-        String name = first_name + " " + last_name;
-        
+        final String last_name = s[0];
+        final String first_name = s[1];
+        final String name = first_name + " " + last_name;
+
         if (my_location_learner.hasHistory(name))
         {
           for (int i = 0; i < my_location_selection_box.getItemCount(); i++)
@@ -306,8 +307,8 @@ public class NKFrame extends JFrame
             final int location_index = 0;
             final String location = item_split[location_index];
 
-            String location_mode = my_location_learner.getMode(name);
-            
+            final String location_mode = my_location_learner.getMode(name);
+
             if (location_mode.equals(location))
             {
               my_location_selection_box.setSelectedIndex(i);
@@ -317,7 +318,7 @@ public class NKFrame extends JFrame
           }
         }
         else
-        {          
+        {
           final String location_id = s[s.length - 1];
 
           for (int i = 0; i < my_location_selection_box.getItemCount(); i++)
@@ -598,7 +599,7 @@ public class NKFrame extends JFrame
    * @param the_panel_enum Screen to be changed to.
    * @param the_message Message to be displayed if the panel to be changed is
    *          the message screen.
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public void setPanel(final PanelEnum the_panel_enum, final String the_message)
       throws IOException

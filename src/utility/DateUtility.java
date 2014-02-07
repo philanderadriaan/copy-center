@@ -10,8 +10,10 @@ import java.util.Date;
  * @author padriaan
  * @version 1
  */
-public class DateUtility
+public final class DateUtility
 {
+  private static final int FIRST_MONTH = 9;
+  private static final int MONTHS_PER_YEAR = 12;
   /**
    * Calendar instance containing today's date.
    */
@@ -41,7 +43,7 @@ public class DateUtility
    * Previous month for today in 1 based index. 1=January, 12=December.
    */
   private static int my_last_month =
-      NumberUtility.getPositiveModulo(my_this_month - 2, 12) + 1;
+      NumberUtility.getPositiveModulo(my_this_month - 2, MONTHS_PER_YEAR) + 1;
 
   /**
    * Utility class. Private constructor prevents instantiation.
@@ -67,10 +69,10 @@ public class DateUtility
    */
   public static String getLastMonthString()
   {
-    Calendar calendar = Calendar.getInstance();
-    Date date = calendar.getTime();
+    final Calendar calendar = Calendar.getInstance();
+    final Date date = calendar.getTime();
     date.setMonth(my_last_month - 1);
-    String last_month_string = my_report_format.format(date);
+    final String last_month_string = my_report_format.format(date);
     return last_month_string;
   }
 
@@ -82,10 +84,10 @@ public class DateUtility
    */
   public static boolean beforeThisMonth(final String the_date_string)
   {
-    int month = getMonth(the_date_string);
-    int month_number = getMonthNumber(month);
-    int this_month_number = getMonthNumber(my_this_month);
-    boolean before_this_month = month_number < this_month_number;
+    final int month = getMonth(the_date_string);
+    final int month_number = getMonthNumber(month);
+    final int this_month_number = getMonthNumber(my_this_month);
+    final boolean before_this_month = month_number < this_month_number;
     return before_this_month;
   }
 
@@ -97,8 +99,8 @@ public class DateUtility
    */
   public static boolean isLastMonth(final String the_date_string)
   {
-    int month = getMonth(the_date_string);
-    boolean is_last_month = month == my_last_month;
+    final int month = getMonth(the_date_string);
+    final boolean is_last_month = month == my_last_month;
     return is_last_month;
   }
 
@@ -111,7 +113,7 @@ public class DateUtility
    */
   private static int getMonthNumber(final int the_month)
   {
-    return NumberUtility.getPositiveModulo(the_month - 9, 12) + 1;
+    return NumberUtility.getPositiveModulo(the_month - FIRST_MONTH, MONTHS_PER_YEAR) + 1;
   }
 
   /**
@@ -122,10 +124,10 @@ public class DateUtility
    */
   private static int getMonth(final String the_date_string)
   {
-    String[] date_split = the_date_string.split("/");
-    int month_index = 0;
-    String month_string = date_split[0];
-    int month = Integer.valueOf(month_string);
+    final String[] date_split = the_date_string.split("/");
+    final int month_index = 0;
+    final String month_string = date_split[0];
+    final int month = Integer.valueOf(month_string);
     return month;
   }
 }

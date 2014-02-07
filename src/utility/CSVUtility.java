@@ -17,7 +17,7 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public class CSVUtility
+public final class CSVUtility
 {
 
   /**
@@ -36,15 +36,15 @@ public class CSVUtility
    */
   public static List<List<String>> read(final String the_path) throws IOException
   {
-    List<List<String>> data = new ArrayList<List<String>>();
+    final List<List<String>> data = new ArrayList<List<String>>();
 
-    BufferedReader reader = new BufferedReader(new FileReader(the_path));
+    final BufferedReader reader = new BufferedReader(new FileReader(the_path));
     String line = reader.readLine();
     while (line != null)
     {
       if (line.split(",").length > 1)
       {
-        List<String> l = new ArrayList(Arrays.asList(line.split(",", -1)));
+        final List<String> l = new ArrayList(Arrays.asList(line.split(",", -1)));
         if (the_path.equals("Table\\User.csv") && l.get(2).equals("0"))
         {
           l.remove(2);
@@ -61,15 +61,15 @@ public class CSVUtility
   /**
    * Writes the data from a 2D list to the file defined by the path.
    * 
-   * @param the_path
-   * @param the_data
-   * @throws IOException
+   * @param the_path Path of CSV file.
+   * @param the_data Data to be written to the CSV file.
+   * @throws IOException Throws exception when error in reading or writing.
    */
   public static void write(final String the_path, final List<List<String>> the_data)
       throws IOException
   {
-    BufferedWriter writer = new BufferedWriter(new FileWriter(the_path));
-    StringBuilder builder = new StringBuilder();
+    final BufferedWriter writer = new BufferedWriter(new FileWriter(the_path));
+    final StringBuilder builder = new StringBuilder();
     for (List<String> i : the_data)
     {
       builder.append(i.get(0));
@@ -85,22 +85,22 @@ public class CSVUtility
   }
 
   /**
-   * Appends a line of data to the CSV file. No commas allowed!
+   * Appends a line of data to the end of a CSV file. No commas allowed!
    * 
-   * @param the_path
-   * @param the_data
-   * @throws IOException
+   * @param the_path Path of CSV file.
+   * @param the_line Line to be added to the CSV file.
+   * @throws IOException Throws exception when error in reading or writing.
    */
-  public static void append(final String the_path, final List<String> the_data)
+  public static void append(final String the_path, final List<String> the_line)
       throws IOException
   {
-    BufferedWriter writer = new BufferedWriter(new FileWriter(the_path, true));
-    StringBuilder builder = new StringBuilder();
-    builder.append(the_data.get(0));
-    for (int i = 1; i < the_data.size(); i++)
+    final BufferedWriter writer = new BufferedWriter(new FileWriter(the_path, true));
+    final StringBuilder builder = new StringBuilder();
+    builder.append(the_line.get(0));
+    for (int i = 1; i < the_line.size(); i++)
     {
       builder.append(',');
-      builder.append(the_data.get(i));
+      builder.append(the_line.get(i));
     }
     builder.append("\n");
     writer.append(builder.toString());

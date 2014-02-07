@@ -13,44 +13,44 @@ import java.util.Map;
  */
 public class IntegerAggregator
 {
-  Map<String, Integer> map = new HashMap<String, Integer>();
+  Map<String, Integer> my_map = new HashMap<String, Integer>();
 
   public IntegerAggregator()
   {
 
   }
 
-  public void increment(String key)
+  public void increment(String the_key)
   {
-    add(key, 1);
+    add(the_key, 1);
   }
 
-  public void add(String key, int value)
+  public void add(String the_key, int the_value)
   {
-    if (map.containsKey(key))
+    if (my_map.containsKey(the_key))
     {
-      int current_value = map.get(key);
-      int added_value = current_value + value;
-      map.put(key, added_value);
+      int current_value = my_map.get(the_key);
+      int added_value = current_value + the_value;
+      my_map.put(the_key, added_value);
     }
     else
     {
-      map.put(key, value);
+      my_map.put(the_key, the_value);
     }
   }
 
   public Map<String, Integer> getMap()
   {
-    return map;
+    return my_map;
   }
 
   public String getMode()
   {
     String highest_key = null;
     int highest_value = 0;
-    for (String i : map.keySet())
+    for (String i : my_map.keySet())
     {
-      int current_value = map.get(i);
+      int current_value = my_map.get(i);
       if (current_value >= highest_value)
       {
         highest_key = i;

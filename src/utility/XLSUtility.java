@@ -31,7 +31,7 @@ public final class XLSUtility
    * 
    * @param the_path File name.
    * @param the_data Raw data of all Table.
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public static void write(final String the_path, final List<List<String>> the_data)
       throws IOException

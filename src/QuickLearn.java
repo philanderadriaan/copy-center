@@ -5,22 +5,21 @@ import object.History;
 import utility.CSVUtility;
 
 /**
- * 
- */
-
-/**
  * @author padriaan
- * 
+ * @version 1
  */
 public class QuickLearn
 {
 
   /**
-   * @throws IOException
+   * This program quickly build up the history of users by analyzing their past
+   * orders.
    * 
+   * @param the_args Command line arguments.
+   * @throws IOException Throws exception when there is error reading or
+   *           writing.
    */
-
-  public static void main(final String[] args) throws IOException
+  public static void main(final String[] the_args) throws IOException
   {
     final History skynet = new History();
     skynet.clear();

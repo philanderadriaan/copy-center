@@ -29,6 +29,9 @@ import utility.XLSUtility;
  */
 public class DataManager
 {
+  private static final int MONTHS_PER_YEAR = 12;
+  private static final int DECEMBER = 12;
+  private static final int FIRST_MONTH = 9;
   /**
    * File name for the order table.
    */
@@ -77,7 +80,7 @@ public class DataManager
   /**
    * Instantiate the data_manager.
    * 
-   * @throws IOException
+   * @throws IOException For errors in Reading and Writing.
    * 
    */
   public DataManager() throws IOException
@@ -94,7 +97,7 @@ public class DataManager
     {
       createOrderTable();
     }
-    
+
   }
 
   public Map<String, List<String>> getHeaderMap()
@@ -144,8 +147,8 @@ public class DataManager
     my_month = today.get(Calendar.MONTH) + 1;
     my_year = today.get(Calendar.YEAR);
 
-    my_last_month = (my_month - 2) % 12 + 1;
-    if (my_last_month == 12)
+    my_last_month = (my_month - 2) % MONTHS_PER_YEAR + 1;
+    if (my_last_month == DECEMBER)
     {
       my_last_month_year = my_year - 1;
     }
@@ -193,7 +196,7 @@ public class DataManager
    * available. Applicable for when the new fiscal year starts, or the order
    * file is deleted.
    * 
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   private void createOrderTable() throws IOException
   {
@@ -209,7 +212,7 @@ public class DataManager
    * Refreshes the screen and update the tables to give the users the most up to
    * date information on the data.
    * 
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public void refresh() throws IOException
   {
@@ -223,7 +226,7 @@ public class DataManager
           is_order_file && order_file_name.equalsIgnoreCase(file_name);
       final boolean is_valid_file = !is_order_file || is_valid_order_file;
 
-      boolean user = i.getName().equals("User.csv");
+      final boolean user = i.getName().equals("User.csv");
 
       if (is_valid_file)
       {
@@ -248,7 +251,7 @@ public class DataManager
    * Adds a row to a Table.
    * 
    * @param the_row Row data to be added to the Table.
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public void addOrder(final List<String> the_row) throws IOException
   {
@@ -276,7 +279,7 @@ public class DataManager
    * Gets all data for cost per location.
    * 
    * @return 2D list of cost per location.
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public List<List<String>> getCostPerLocation() throws IOException
   {
@@ -299,8 +302,9 @@ public class DataManager
       final String[] date_split = date_string.split("/");
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
-      
-      if ((month - 9) % 12 <= NumberUtility.getPositiveModulo(my_last_month - 9, 12))
+
+      if ((month - FIRST_MONTH) % MONTHS_PER_YEAR <= NumberUtility
+          .getPositiveModulo(my_last_month - FIRST_MONTH, MONTHS_PER_YEAR))
       {
 
         final String current_location = my_output.get(i).get(0);
@@ -322,7 +326,7 @@ public class DataManager
           month_aggregation.put(key, 0.0);
         }
 
-        if (month % 12 == my_last_month)
+        if (month % MONTHS_PER_YEAR == my_last_month)
         {
           month_total += job_cost;
           if (month_aggregation.containsKey(key))
@@ -370,7 +374,7 @@ public class DataManager
    * Gets all data of copies per locaiton.
    * 
    * @return a 2D list of all data for copies per location.
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public List<List<String>> getCopiesPerLocation() throws IOException
   {
@@ -396,8 +400,9 @@ public class DataManager
       final String[] date_split = date_string.split("/");
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
-      
-      if ((month - 9) % 12 <= NumberUtility.getPositiveModulo(my_last_month - 9, 12))
+
+      if ((month - FIRST_MONTH) % MONTHS_PER_YEAR <= NumberUtility
+          .getPositiveModulo(my_last_month - FIRST_MONTH, MONTHS_PER_YEAR))
       {
 
         final int location_index = 0;
@@ -424,7 +429,7 @@ public class DataManager
           double total_cost = location_cost_map.get(key);
           total_cost += current_cost;
           location_cost_map.put(key, total_cost);
-          if (month % 12 == my_last_month)
+          if (month % MONTHS_PER_YEAR == my_last_month)
           {
             int month_quantity = location_quantity_month_map.get(key);
             month_quantity += current_quantity;
@@ -439,7 +444,7 @@ public class DataManager
           key_set.add(key);
           location_quantity_map.put(key, current_quantity);
           location_cost_map.put(key, current_cost);
-          if (month % 12 == my_last_month)
+          if (month % MONTHS_PER_YEAR == my_last_month)
           {
             location_quantity_month_map.put(key, current_quantity);
             location_cost_month_map.put(key, current_cost);
@@ -544,7 +549,7 @@ public class DataManager
    * Gets all data for product per description.
    * 
    * @return A 2D list of product per description data.
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public List<List<String>> getProductPerDescription() throws IOException
   {
@@ -564,7 +569,7 @@ public class DataManager
       final String[] bill_date_split = bill_date_string.split("/");
       final String month_string = bill_date_split[0];
       final int current_month = Integer.valueOf(month_string);
-      if (current_month % 12 == my_last_month)
+      if (current_month % MONTHS_PER_YEAR == my_last_month)
       {
         final int description_index = 0;
         final String current_description = i.get(description_index);
@@ -645,7 +650,7 @@ public class DataManager
    * Gets all data for product per location.
    * 
    * @return A 2D list of data for product per location.
-   * @throws IOException
+   * @throws IOException For reading and writing errors.
    */
   public List<List<String>> getProductPerLocation() throws IOException
   {
@@ -664,7 +669,7 @@ public class DataManager
       final String[] bill_date_split = bill_date_string.split("/");
       final String month_string = bill_date_split[0];
       final int current_month = Integer.valueOf(month_string);
-      if (current_month % 12 == my_last_month)
+      if (current_month % MONTHS_PER_YEAR == my_last_month)
       {
         final int description_index = 1;
         final String current_description = i.get(description_index);
@@ -754,6 +759,8 @@ public class DataManager
   /**
    * Get the order data.
    * 
+   * @param the_filter Whether the table is filtered to only show the last two
+   *          weeks or not.
    * @return A 2D list containing fields for order.
    */
   public List<List<String>> getOrder(final boolean the_filter)

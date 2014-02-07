@@ -53,6 +53,7 @@ public final class NumberUtility
    * Converts a double into a currency unit with 2 decimal points.
    * 
    * @param the_number Any double.
+   * @param the_dollar_sign Whether to add a dollar sign or not.
    * @return A string with the double containing 2 decimal places always.
    */
   public static String getMoney(final double the_number, final boolean the_dollar_sign)
@@ -88,8 +89,8 @@ public final class NumberUtility
     new SimpleDateFormat("M/d/y").format(the_date);
   }
 
-  public static int getPositiveModulo(int a, int b)
+  public static int getPositiveModulo(int operand_1, int operand_2)
   {
-    return (a % b + b) % b;
+    return (operand_1 % operand_2 + operand_2) % operand_2;
   }
 }

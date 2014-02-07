@@ -29,13 +29,13 @@ public class LocationHistory
     return mode;
   }
 
-  public void add(String location)
+  public void add(String the_location)
   {
     boolean excluded = false;
 
     for (String i : my_exclusion_list)
     {
-      String location_lower_case = location.toLowerCase();
+      String location_lower_case = the_location.toLowerCase();
       String exclusion_lower_case = i.toLowerCase();
       if (location_lower_case.contains(exclusion_lower_case))
       {
@@ -45,7 +45,7 @@ public class LocationHistory
     }
     if (!excluded)
     {
-      my_history_list.add(location);
+      my_history_list.add(the_location);
     }
     while (my_history_list.size() > HISTORY_SIZE)
     {

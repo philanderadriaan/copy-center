@@ -44,8 +44,8 @@ public class NKComboBox extends JComboBox<String>
    * Consolidate data from a 2D list of data into a list of strings with comma
    * separated value.
    * 
-   * @param the_data
-   * @return
+   * @param the_data Data to be parsed.
+   * @return Strings with comma separated values from the data.
    */
   private List<String> consolidateData(final List<List<String>> the_data)
   {

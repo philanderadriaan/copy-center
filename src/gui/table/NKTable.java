@@ -1,7 +1,6 @@
 
 package gui.table;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JTable;
@@ -22,8 +21,9 @@ public class NKTable extends JTable
    * Creates the Table.
    * 
    * @param the_data Data for the Table.
+   * @param the_header header of the table.
    */
-  public NKTable(final List<List<String>> the_data, List<String> the_header)
+  public NKTable(final List<List<String>> the_data, final List<String> the_header)
   {
     super(getData(the_data), the_header.toArray());
     TableUtility.sort(this, 0);

@@ -7,7 +7,7 @@ package utility;
  * @author padriaan
  *
  */
-public class ReportUtility
+public final class ReportUtility
 {
 
   /**

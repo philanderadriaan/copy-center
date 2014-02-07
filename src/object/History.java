@@ -23,7 +23,7 @@ public class History
   private static final String HISTORY_PATH = "Skynet\\Skynet.csv";
   private static final String EXCLUSION_PATH = "Skynet\\Exclusion.txt";
 
-  List<String> exclusion_list = TXTUtility.read(EXCLUSION_PATH);
+  List<String> my_exclusion_list = TXTUtility.read(EXCLUSION_PATH);
 
   /**
    * Map containing history for all selected users.
@@ -46,29 +46,29 @@ public class History
     {
       String user = i.get(0);
       i.remove(0);
-      LocationHistory history = new LocationHistory(i, exclusion_list);
+      LocationHistory history = new LocationHistory(i, my_exclusion_list);
       my_histories.put(user, history);
     }
   }
 
-  public void add(String name, String location)
+  public void add(String the_name, String the_location)
   {
     LocationHistory history;
-    if (!my_histories.containsKey(name))
+    if (!my_histories.containsKey(the_name))
     {
-      history = new LocationHistory(exclusion_list);
-      my_histories.put(name, history);
+      history = new LocationHistory(my_exclusion_list);
+      my_histories.put(the_name, history);
     }
     else
     {
-      history = my_histories.get(name);
+      history = my_histories.get(the_name);
     }
-    history.add(location);
+    history.add(the_location);
   }
 
-  public String getMode(String name)
+  public String getMode(String the_name)
   {
-    return my_histories.get(name).getMode();
+    return my_histories.get(the_name).getMode();
   }
 
   public void save() throws IOException

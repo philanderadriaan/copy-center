@@ -4,8 +4,6 @@ import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
-import utility.DateUtility;
-
 /**
  * The class that starts the whole program.
  * 
@@ -38,12 +36,11 @@ public final class Main
         if ("Nimbus".equals(info.getName()))
         {
           UIManager.setLookAndFeel(info.getClassName());
-
         }
       }
       new NKFrame();
     }
-    catch (Exception e)
+    catch (final Exception e)
     {
       JOptionPane.showMessageDialog(null, e.toString(), null, JOptionPane.ERROR_MESSAGE);
       e.printStackTrace();

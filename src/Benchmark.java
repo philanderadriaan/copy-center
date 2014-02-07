@@ -21,7 +21,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 public class Benchmark
 {
-  public static void main(String[] args) throws IOException
+  private static final int DECIMAL_POINTS = 3;
+  public static void main(String[] the_args) throws IOException
   {
     testCSV();
     testXLS();
@@ -107,10 +108,10 @@ public class Benchmark
       data.add(row_data);
     }
 
-    String the_path = "test2.xls";
+    String path = "test2.xls";
 
     final Workbook book2 = new HSSFWorkbook();
-    final Sheet sheet2 = book2.createSheet(the_path);
+    final Sheet sheet2 = book2.createSheet(path);
     for (int i = 0; i < data.size(); i++)
     {
       final Row row = sheet2.createRow(i);
@@ -125,7 +126,7 @@ public class Benchmark
       sheet2.autoSizeColumn(i);
     }
     FileOutputStream output;
-    output = new FileOutputStream(the_path);
+    output = new FileOutputStream(path);
     book2.write(output);
     output.close();
 
@@ -144,7 +145,7 @@ public class Benchmark
     }
     else
     {
-      decimal = decimal.setScale(3, BigDecimal.ROUND_HALF_UP);
+      decimal = decimal.setScale(DECIMAL_POINTS, BigDecimal.ROUND_HALF_UP);
       return Double.toString(decimal.doubleValue());
     }
   }

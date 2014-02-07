@@ -6,7 +6,7 @@ import java.util.List;
 
 import object.IntegerAggregator;
 
-public class CollectionUtility
+public final class CollectionUtility
 {
 
   private CollectionUtility()
@@ -14,14 +14,14 @@ public class CollectionUtility
 
   }
 
-  public static String getMode(List<String> list)
+  public static String getMode(final List<String> the_list)
   {
-    IntegerAggregator aggie = new IntegerAggregator();
-    for (String i : list)
+    final IntegerAggregator aggie = new IntegerAggregator();
+    for (String i : the_list)
     {
       aggie.increment(i);
     }
-    String mode = aggie.getMode();
+    final String mode = aggie.getMode();
     return mode;  
   }
 }

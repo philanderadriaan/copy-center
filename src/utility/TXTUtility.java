@@ -14,7 +14,7 @@ import java.util.List;
  * @author padriaan
  * 
  */
-public class TXTUtility
+public final class TXTUtility
 {
 
   /**
@@ -25,11 +25,11 @@ public class TXTUtility
     // TODO Auto-generated constructor stub
   }
 
-  public static List<String> read(String the_path) throws IOException
+  public static List<String> read(final String the_path) throws IOException
   {
-    List<String> data = new ArrayList<String>();
-    FileReader file_reader = new FileReader(the_path);
-    BufferedReader buffered_reader = new BufferedReader(file_reader);
+    final List<String> data = new ArrayList<String>();
+    final FileReader file_reader = new FileReader(the_path);
+    final BufferedReader buffered_reader = new BufferedReader(file_reader);
     String line = buffered_reader.readLine();
     while (line != null)
     {
