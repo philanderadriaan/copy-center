@@ -15,7 +15,7 @@ import utility.TXTUtility;
  * @author padriaan
  * 
  */
-public class Skynet
+public class History
 {
   /**
    * Path of location history.
@@ -37,7 +37,7 @@ public class Skynet
    * 
    * @throws IOException If history file not found.
    */
-  public Skynet() throws IOException
+  public History() throws IOException
   {
 
     List<List<String>> histories = CSVUtility.read(HISTORY_PATH);

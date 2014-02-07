@@ -1,7 +1,7 @@
 import java.io.IOException;
 import java.util.List;
 
-import object.Skynet;
+import object.History;
 import utility.CSVUtility;
 
 /**
@@ -22,7 +22,7 @@ public class QuickLearn
 
   public static void main(final String[] args) throws IOException
   {
-    final Skynet skynet = new Skynet();
+    final History skynet = new History();
     skynet.clear();
     final List<List<String>> order = CSVUtility.read("Table\\Order2013-2014.csv");
     for (List<String> i : order)

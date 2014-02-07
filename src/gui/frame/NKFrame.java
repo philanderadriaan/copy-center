@@ -31,7 +31,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import object.DataManager;
-import object.Skynet;
+import object.History;
 import utility.StringUtility;
 
 import com.toedter.calendar.JDateChooser;
@@ -113,7 +113,7 @@ public class NKFrame extends JFrame
   /**
    * Location learnining.
    */
-  private Skynet my_location_learner = new Skynet();
+  private History my_location_learner = new History();
 
   /**
    * Creates the frame by calling the JFrame constructor, then creates custom
@@ -127,7 +127,7 @@ public class NKFrame extends JFrame
     start();
   }
 
-  public Skynet getLocationLearner()
+  public History getLocationLearner()
   {
     return my_location_learner;
   }
