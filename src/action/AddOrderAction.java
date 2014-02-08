@@ -87,7 +87,7 @@ public class AddOrderAction extends AbstractAction
     {
       data_manager.addOrder(input);
     }
-    catch (IOException e)
+    catch (final IOException e)
     {
       JOptionPane.showMessageDialog(null, e.getMessage(), null, JOptionPane.ERROR_MESSAGE);
     }

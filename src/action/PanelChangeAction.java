@@ -50,7 +50,7 @@ public class PanelChangeAction extends AbstractAction
     {
       my_frame.setPanel(my_panel, null);
     }
-    catch (IOException e)
+    catch (final IOException e)
     {
       JOptionPane.showMessageDialog(null, e.getMessage(), null, JOptionPane.ERROR_MESSAGE);
     }

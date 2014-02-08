@@ -1,6 +1,5 @@
+
 package utility;
-
-
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -45,7 +44,7 @@ public final class CSVUtility
       if (line.split(",").length > 1)
       {
         final List<String> l = new ArrayList(Arrays.asList(line.split(",", -1)));
-        if (the_path.equals("Table\\User.csv") && l.get(2).equals("0"))
+        if ("Table\\User.csv".equals(the_path) && "0".equals(l.get(2)))
         {
           l.remove(2);
           l.add("000");

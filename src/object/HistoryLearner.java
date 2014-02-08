@@ -30,12 +30,12 @@ public class HistoryLearner
   /**
    * 
    */
-  List<String> my_exclusion_list = TXTUtility.read(EXCLUSION_PATH);
+  private List<String> my_exclusion_list = TXTUtility.read(EXCLUSION_PATH);
 
   /**
    * Map containing history for all selected users.
    */
-  Map<String, LocationHistory> my_histories = new HashMap<String, LocationHistory>();
+  private Map<String, LocationHistory> my_histories = new HashMap<String, LocationHistory>();
 
   
   

@@ -1,11 +1,11 @@
-/**
- * 
- */
+
 package utility;
 
 /**
+ * Utility for generating report.
+ * 
  * @author padriaan
- *
+ * @version 1
  */
 public final class ReportUtility
 {
@@ -15,8 +15,6 @@ public final class ReportUtility
    */
   private ReportUtility()
   {
-    // TODO Auto-generated constructor stub
   }
 
-  
 }

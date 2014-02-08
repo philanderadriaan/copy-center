@@ -96,7 +96,7 @@ public final class NumberUtility
    * @param operand_2 Second operand.
    * @return Modulo of first operand by second operand with only positive results.
    */
-  public static int getPositiveModulo(int operand_1, int operand_2)
+  public static int getPositiveModulo(final int operand_1, final int operand_2)
   {
     return (operand_1 % operand_2 + operand_2) % operand_2;
   }
