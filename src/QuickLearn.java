@@ -10,6 +10,12 @@ import utility.CSVUtility;
  */
 public class QuickLearn
 {
+  /**
+   * Utility class should not have a public or default constructor.
+   */
+  private QuickLearn()
+  {
+  }
 
   /**
    * This program quickly build up the history of users by analyzing their past

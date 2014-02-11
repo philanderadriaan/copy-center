@@ -26,12 +26,19 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author padriaan
  * @version 1
  */
-public class Benchmark
+public final class Benchmark
 {
   /**
    * Maximum decimal points.
    */
   private static final int DECIMAL_POINTS = 3;
+
+  /**
+   * Utility class should not have a public or default constructor.
+   */
+  private Benchmark()
+  {
+  }
 
   /**
    * Starts the tests.
