@@ -20,6 +20,8 @@ public final class DateUtility
    * Number of months per year.
    */
   private static final int MONTHS_PER_YEAR = 12;
+  private static final int DECEMBER = 12;
+  private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
   /**
    * Calendar instance containing today's date.
    */
@@ -52,13 +54,23 @@ public final class DateUtility
   private DateUtility()
   {
   }
+  
+  public static int getDecember()
+  {
+    return DECEMBER;
+  }
+  
+  private static final int getFirstMonth()
+  {
+    return FIRST_MONTH;
+  }
 
   /**
    * Gets the month previous to this month.
    * 
    * @return Previous month.
    */
-  public static int getLastMonth()
+  public static int getPreviousMonth()
   {
     return my_last_month;
   }
@@ -68,7 +80,7 @@ public final class DateUtility
    * 
    * @return Last month in string.
    */
-  public static String getLastMonthString()
+  public static String getPreviousMonthString()
   {
     final Calendar calendar = Calendar.getInstance();
     final Date date = calendar.getTime();
@@ -83,22 +95,22 @@ public final class DateUtility
    * @param the_date_string Current date in M/d/yyyy
    * @return true if date is before this month, false if otherwise.
    */
-  public static boolean beforeThisMonth(final String the_date_string)
+  public static boolean isBeforeThisMonth(final String the_date_string)
   {
     final int month = getMonth(the_date_string);
-    final int month_number = getMonthNumber(month);
-    final int this_month_number = getMonthNumber(my_this_month);
+    final int month_number = getMonthRank(month);
+    final int this_month_number = getMonthRank(my_this_month);
     final boolean before_this_month = month_number < this_month_number;
     return before_this_month;
   }
 
   /**
-   * Check if date is set during last month.
+   * Check if date is set during previous month.
    * 
    * @param the_date_string Date in M/d/yyyy
    * @return True if date is set during last month, false if otherwise.
    */
-  public static boolean isLastMonth(final String the_date_string)
+  public static boolean isPreviousMonth(final String the_date_string)
   {
     final int month = getMonth(the_date_string);
     final boolean is_last_month = month == my_last_month;
@@ -106,13 +118,13 @@ public final class DateUtility
   }
 
   /**
-   * Get the month number starting from the beginning of school year.
+   * Get the month rank starting from the beginning of school year.
    * September=1, August=12.
    * 
    * @param the_month Month.
    * @return Month number starting from september.
    */
-  private static int getMonthNumber(final int the_month)
+  private static int getMonthRank(final int the_month)
   {
     return NumberUtility.getPositiveModulo(the_month - FIRST_MONTH, MONTHS_PER_YEAR) + 1;
   }

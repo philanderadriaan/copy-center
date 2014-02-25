@@ -18,6 +18,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import utility.CSVUtility;
+import utility.DateUtility;
 import utility.FileUtility;
 import utility.NumberUtility;
 import utility.XLSUtility;
@@ -30,50 +31,50 @@ import utility.XLSUtility;
  */
 public class DataManager
 {
-  /**
-   * Number of months per year.
-   */
-  private static final int MONTHS_PER_YEAR = 12;
-  /**
-   * December's number.
-   */
-  private static final int DECEMBER = 12;
-  /**
-   * First month of the school year.
-   */
-  private static final int FIRST_MONTH = 9;
+//  /**
+//   * Number of months per year.
+//   */
+//  private static final int MONTHS_PER_YEAR = 12;
+//  /**
+//   * December's number.
+//   */
+//  private static final int DECEMBER = 12;
+//  /**
+//   * First month of the school year.
+//   */
+//  private static final int DateUtility.getFirstMonth() = 9;
+//  /**
+//   * Milliseconds per week.
+//   */
+//  private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
+//  /**
+//   * First month of the fiscal year. Default is september.
+//   */
+//  private static final int DateUtility.getFirstMonth()_OF_YEAR = 9;
+//  /**
+//   * Current month.
+//   */
+//  private int my_month;
+//  /**
+//   * Last month.
+//   */
+//  private int my_last_month;
+//  /**
+//   * Current year.
+//   */
+//  private int my_year;
+//  /**
+//   * Last month.
+//   */
+//  private int my_last_month_year;
+//  /**
+//   * Current month in english.
+//   */
+//  private String my_month_string;
   /**
    * File name for the order table.
    */
   private static String order_file_name;
-  /**
-   * Milliseconds per week.
-   */
-  private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
-  /**
-   * First month of the fiscal year. Default is september.
-   */
-  private static final int FIRST_MONTH_OF_YEAR = 9;
-  /**
-   * Current month.
-   */
-  private int my_month;
-  /**
-   * Last month.
-   */
-  private int my_last_month;
-  /**
-   * Current year.
-   */
-  private int my_year;
-  /**
-   * Last month.
-   */
-  private int my_last_month_year;
-  /**
-   * Current month in english.
-   */
-  private String my_month_long;
   /**
    * Contains all the data for all Table.
    */
@@ -166,7 +167,7 @@ public class DataManager
     my_year = today.get(Calendar.YEAR);
 
     my_last_month = (my_month - 2) % MONTHS_PER_YEAR + 1;
-    if (my_last_month == DECEMBER)
+    if (my_last_month == DateUtility.getDecember())
     {
       my_last_month_year = my_year - 1;
     }
@@ -181,7 +182,7 @@ public class DataManager
     final Date last_month_date = last_month_calendar.getTime();
 
     final Format date_formatter = new SimpleDateFormat("MMMM y");
-    my_month_long = date_formatter.format(last_month_date);
+    my_month_string = date_formatter.format(last_month_date);
   }
 
   /**
@@ -192,7 +193,7 @@ public class DataManager
     final StringBuilder order_file_name_builder = new StringBuilder();
     order_file_name_builder.append("Order");
 
-    if (my_month < FIRST_MONTH_OF_YEAR)
+    if (my_month < DateUtility.getFirstMonth()_OF_YEAR)
     {
       order_file_name_builder.append(my_year - 1);
       order_file_name_builder.append('-');
@@ -318,8 +319,8 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if ((month - FIRST_MONTH) % MONTHS_PER_YEAR <= NumberUtility
-          .getPositiveModulo(my_last_month - FIRST_MONTH, MONTHS_PER_YEAR))
+      if ((month - DateUtility.getFirstMonth()) % MONTHS_PER_YEAR <= NumberUtility
+          .getPositiveModulo(my_last_month - DateUtility.getFirstMonth(), MONTHS_PER_YEAR))
       {
 
         final String current_location = my_output.get(i).get(0);
@@ -362,8 +363,8 @@ public class DataManager
     final List<String> header = new ArrayList<>();
     header.add("Location:");
     header.add("Budget Code:");
-    header.add(my_month_long);
-    header.add("School Year to End of " + my_month_long + ":");
+    header.add(my_month_string);
+    header.add("School Year to End of " + my_month_string + ":");
     my_output.add(header);
 
     my_output.add(new ArrayList<String>());
@@ -416,8 +417,8 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if ((month - FIRST_MONTH) % MONTHS_PER_YEAR <= NumberUtility
-          .getPositiveModulo(my_last_month - FIRST_MONTH, MONTHS_PER_YEAR))
+      if ((month - DateUtility.getFirstMonth()) % MONTHS_PER_YEAR <= NumberUtility
+          .getPositiveModulo(my_last_month - DateUtility.getFirstMonth(), MONTHS_PER_YEAR))
       {
 
         final int location_index = 0;
@@ -536,9 +537,9 @@ public class DataManager
     final List<List<String>> excel = new ArrayList<List<String>>();
     final List<String> excel_head = new ArrayList<String>();
     excel_head.add("Location: Employee:");
-    excel_head.add(my_month_long);
+    excel_head.add(my_month_string);
     excel_head.add("");
-    excel_head.add("School Year to End of " + my_month_long + ":");
+    excel_head.add("School Year to End of " + my_month_string + ":");
     excel.add(excel_head);
     for (String i : table_map.keySet())
     {
