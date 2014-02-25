@@ -18,6 +18,7 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 
 import utility.CSVUtility;
+import utility.FileUtility;
 import utility.NumberUtility;
 import utility.XLSUtility;
 
@@ -160,7 +161,7 @@ public class DataManager
   private void setDate()
   {
     final Calendar today = Calendar.getInstance();
-    //final Date today_date = today.getTime();
+    // final Date today_date = today.getTime();
     my_month = today.get(Calendar.MONTH) + 1;
     my_year = today.get(Calendar.YEAR);
 
@@ -233,7 +234,7 @@ public class DataManager
    */
   public void refresh() throws IOException
   {
-    final File[] files = new File("Table").listFiles();
+    final List<File> files = FileUtility.getFiles("Table");
 
     for (File i : files)
     {

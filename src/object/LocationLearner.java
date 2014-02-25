@@ -16,7 +16,7 @@ import utility.TXTUtility;
  * @author padriaan
  * @version 1
  */
-public class HistoryLearner
+public class LocationLearner
 {
   /**
    * Path of location history.
@@ -44,7 +44,7 @@ public class HistoryLearner
    * 
    * @throws IOException If history file not found.
    */
-  public HistoryLearner() throws IOException
+  public LocationLearner() throws IOException
   {
 
     final List<List<String>> histories = CSVUtility.read(HISTORY_PATH);

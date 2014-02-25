@@ -31,7 +31,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import object.DataManager;
-import object.HistoryLearner;
+import object.LocationLearner;
 import utility.StringUtility;
 
 import com.toedter.calendar.JDateChooser;
@@ -113,7 +113,7 @@ public class NKFrame extends JFrame
   /**
    * Location learnining.
    */
-  private HistoryLearner my_location_learner = new HistoryLearner();
+  private LocationLearner my_location_learner = new LocationLearner();
 
   /**
    * Creates the frame by calling the JFrame constructor, then creates custom
@@ -132,7 +132,7 @@ public class NKFrame extends JFrame
    * 
    * @return The specific location learner.
    */
-  public HistoryLearner getLocationLearner()
+  public LocationLearner getLocationLearner()
   {
     return my_location_learner;
   }
