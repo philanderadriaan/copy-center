@@ -45,7 +45,7 @@ public final class DateUtility
   /**
    * Previous month for today in 1 based index. 1=January, 12=December.
    */
-  private static int my_last_month =
+  private static int my_previous_month =
       NumberUtility.getPositiveModulo(my_this_month - 2, MONTHS_PER_YEAR) + 1;
 
   /**
@@ -53,6 +53,16 @@ public final class DateUtility
    */
   private DateUtility()
   {
+  }
+  
+  public static int getMonthsPerYear()
+  {
+    return MONTHS_PER_YEAR;
+  }
+  
+  public static int getMillisecondsPerWeek()
+  {
+    return MILLISECONDS_PER_WEEK;
   }
   
   public static int getDecember()
@@ -72,7 +82,7 @@ public final class DateUtility
    */
   public static int getPreviousMonth()
   {
-    return my_last_month;
+    return my_previous_month;
   }
 
   /**
@@ -84,7 +94,7 @@ public final class DateUtility
   {
     final Calendar calendar = Calendar.getInstance();
     final Date date = calendar.getTime();
-    date.setMonth(my_last_month - 1);
+    date.setMonth(my_previous_month - 1);
     final String last_month_string = my_report_format.format(date);
     return last_month_string;
   }
@@ -113,7 +123,7 @@ public final class DateUtility
   public static boolean isPreviousMonth(final String the_date_string)
   {
     final int month = getMonth(the_date_string);
-    final boolean is_last_month = month == my_last_month;
+    final boolean is_last_month = month == my_previous_month;
     return is_last_month;
   }
 

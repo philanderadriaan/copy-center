@@ -34,7 +34,7 @@ public class DataManager
 //  /**
 //   * Number of months per year.
 //   */
-//  private static final int MONTHS_PER_YEAR = 12;
+//  private static final int DateUtility.getMonthsPerYear() = 12;
 //  /**
 //   * December's number.
 //   */
@@ -166,7 +166,7 @@ public class DataManager
     my_month = today.get(Calendar.MONTH) + 1;
     my_year = today.get(Calendar.YEAR);
 
-    my_last_month = (my_month - 2) % MONTHS_PER_YEAR + 1;
+    my_last_month = (my_month - 2) % DateUtility.getMonthsPerYear() + 1;
     if (my_last_month == DateUtility.getDecember())
     {
       my_last_month_year = my_year - 1;
@@ -319,8 +319,8 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if ((month - DateUtility.getFirstMonth()) % MONTHS_PER_YEAR <= NumberUtility
-          .getPositiveModulo(my_last_month - DateUtility.getFirstMonth(), MONTHS_PER_YEAR))
+      if ((month - DateUtility.getFirstMonth()) % DateUtility.getMonthsPerYear() <= NumberUtility
+          .getPositiveModulo(my_last_month - DateUtility.getFirstMonth(), DateUtility.getMonthsPerYear()))
       {
 
         final String current_location = my_output.get(i).get(0);
@@ -342,7 +342,7 @@ public class DataManager
           month_aggregation.put(key, 0.0);
         }
 
-        if (month % MONTHS_PER_YEAR == my_last_month)
+        if (month % DateUtility.getMonthsPerYear() == my_last_month)
         {
           month_total += job_cost;
           if (month_aggregation.containsKey(key))
@@ -417,8 +417,8 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if ((month - DateUtility.getFirstMonth()) % MONTHS_PER_YEAR <= NumberUtility
-          .getPositiveModulo(my_last_month - DateUtility.getFirstMonth(), MONTHS_PER_YEAR))
+      if ((month - DateUtility.getFirstMonth()) % DateUtility.getMonthsPerYear() <= NumberUtility
+          .getPositiveModulo(my_last_month - DateUtility.getFirstMonth(), DateUtility.getMonthsPerYear()))
       {
 
         final int location_index = 0;
@@ -445,7 +445,7 @@ public class DataManager
           double total_cost = location_cost_map.get(key);
           total_cost += current_cost;
           location_cost_map.put(key, total_cost);
-          if (month % MONTHS_PER_YEAR == my_last_month)
+          if (month % DateUtility.getMonthsPerYear() == my_last_month)
           {
             int month_quantity = location_quantity_month_map.get(key);
             month_quantity += current_quantity;
@@ -460,7 +460,7 @@ public class DataManager
           key_set.add(key);
           location_quantity_map.put(key, current_quantity);
           location_cost_map.put(key, current_cost);
-          if (month % MONTHS_PER_YEAR == my_last_month)
+          if (month % DateUtility.getMonthsPerYear() == my_last_month)
           {
             location_quantity_month_map.put(key, current_quantity);
             location_cost_month_map.put(key, current_cost);
@@ -585,7 +585,7 @@ public class DataManager
       final String[] bill_date_split = bill_date_string.split("/");
       final String month_string = bill_date_split[0];
       final int current_month = Integer.valueOf(month_string);
-      if (current_month % MONTHS_PER_YEAR == my_last_month)
+      if (current_month % DateUtility.getMonthsPerYear() == my_last_month)
       {
         final int description_index = 0;
         final String current_description = i.get(description_index);
@@ -685,7 +685,7 @@ public class DataManager
       final String[] bill_date_split = bill_date_string.split("/");
       final String month_string = bill_date_split[0];
       final int current_month = Integer.valueOf(month_string);
-      if (current_month % MONTHS_PER_YEAR == my_last_month)
+      if (current_month % DateUtility.getMonthsPerYear() == my_last_month)
       {
         final int description_index = 1;
         final String current_description = i.get(description_index);
@@ -803,7 +803,7 @@ public class DataManager
         d.set(Integer.valueOf(m[2]), Integer.valueOf(m[0]) - 1, Integer.valueOf(m[1]));
         final long n =
             (Calendar.getInstance().getTimeInMillis() - d.getTimeInMillis()) /
-                MILLISECONDS_PER_WEEK;
+                DateUtility.getMillisecondsPerWeek();
         if (0 <= n && n <= 2)
         {
           i++;
