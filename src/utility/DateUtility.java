@@ -12,6 +12,7 @@ import java.util.Date;
  */
 public final class DateUtility
 {
+  private static final int EPOCH = 1900;
   /**
    * First month of the school year.
    */
@@ -40,13 +41,13 @@ public final class DateUtility
   /**
    * Current month in 1 based index. 1=January, 12=December
    */
-  private static int my_this_month = my_date.getMonth() + 1;
+  private static int my_current_month = my_date.getMonth() + 1;
 
   /**
    * Previous month for today in 1 based index. 1=January, 12=December.
    */
-  private static int my_previous_month =
-      NumberUtility.getPositiveModulo(my_this_month - 2, MONTHS_PER_YEAR) + 1;
+  private static int my_previous_month = NumberUtility.getPositiveModulo(my_current_month - 2,
+                                                                         MONTHS_PER_YEAR) + 1;
 
   /**
    * Utility class. Private constructor prevents instantiation.
@@ -54,23 +55,40 @@ public final class DateUtility
   private DateUtility()
   {
   }
-  
+
+  public static int getYear()
+  {
+    int java_year = my_date.getYear();
+    int real_year = EPOCH + java_year;
+    return real_year;
+  }
+
+  public static String getMonthString()
+  {
+    return my_report_format.format(my_date);
+  }
+
+  public static int getCurrentMonth()
+  {
+    return my_current_month;
+  }
+
   public static int getMonthsPerYear()
   {
     return MONTHS_PER_YEAR;
   }
-  
+
   public static int getMillisecondsPerWeek()
   {
     return MILLISECONDS_PER_WEEK;
   }
-  
+
   public static int getDecember()
   {
     return DECEMBER;
   }
-  
-  private static final int getFirstMonth()
+
+  public static int getFirstMonth()
   {
     return FIRST_MONTH;
   }
@@ -109,7 +127,7 @@ public final class DateUtility
   {
     final int month = getMonth(the_date_string);
     final int month_number = getMonthRank(month);
-    final int this_month_number = getMonthRank(my_this_month);
+    final int this_month_number = getMonthRank(my_current_month);
     final boolean before_this_month = month_number < this_month_number;
     return before_this_month;
   }
@@ -128,8 +146,8 @@ public final class DateUtility
   }
 
   /**
-   * Get the month rank starting from the beginning of school year.
-   * September=1, August=12.
+   * Get the month rank starting from the beginning of school year. September=1,
+   * August=12.
    * 
    * @param the_month Month.
    * @return Month number starting from september.
