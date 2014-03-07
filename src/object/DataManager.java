@@ -195,15 +195,15 @@ public class DataManager
 
     if (DateUtility.getCurrentMonth() < DateUtility.getFirstMonth())
     {
-      order_file_name_builder.append(DateUtility.getYear() - 1);
+      order_file_name_builder.append(DateUtility.getCurrentYear() - 1);
       order_file_name_builder.append('-');
-      order_file_name_builder.append(DateUtility.getYear());
+      order_file_name_builder.append(DateUtility.getCurrentYear());
     }
     else
     {
-      order_file_name_builder.append(DateUtility.getYear());
+      order_file_name_builder.append(DateUtility.getCurrentYear());
       order_file_name_builder.append('-');
-      order_file_name_builder.append(DateUtility.getYear() + 1);
+      order_file_name_builder.append(DateUtility.getCurrentYear() + 1);
     }
 
     order_file_name_builder.append(".csv");
@@ -363,8 +363,8 @@ public class DataManager
     final List<String> header = new ArrayList<>();
     header.add("Location:");
     header.add("Budget Code:");
-    header.add(DateUtility.getMonthString());
-    header.add("School Year to End of " + DateUtility.getMonthString() + ":");
+    header.add(DateUtility.getCurrentMonthFormatted());
+    header.add("School Year to End of " + DateUtility.getCurrentMonthFormatted() + ":");
     my_output.add(header);
 
     my_output.add(new ArrayList<String>());
@@ -537,9 +537,9 @@ public class DataManager
     final List<List<String>> excel = new ArrayList<List<String>>();
     final List<String> excel_head = new ArrayList<String>();
     excel_head.add("Location: Employee:");
-    excel_head.add(DateUtility.getMonthString());
+    excel_head.add(DateUtility.getCurrentMonthFormatted());
     excel_head.add("");
-    excel_head.add("School Year to End of " + DateUtility.getMonthString() + ":");
+    excel_head.add("School Year to End of " + DateUtility.getCurrentMonthFormatted() + ":");
     excel.add(excel_head);
     for (String i : table_map.keySet())
     {

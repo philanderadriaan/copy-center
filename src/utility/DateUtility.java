@@ -7,6 +7,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
+ * Utility to manage dates.
+ * 
  * @author padriaan
  * @version 1
  */
@@ -48,7 +50,7 @@ public final class DateUtility
    * Current month in 1 based index. 1=January, 12=December
    */
   private static int my_current_month = my_date.getMonth() + 1;
-
+ 
   /**
    * Previous month for today in 1 based index. 1=January, 12=December.
    */
@@ -62,38 +64,73 @@ public final class DateUtility
   {
   }
 
-  public static int getYear()
+  /**
+   * Gets the current year.
+   * 
+   * @return Current year in integer.
+   */
+  public static int getCurrentYear()
   {
     final int java_year = my_date.getYear();
     final int real_year = UNIX_EPOCH + java_year;
     return real_year;
   }
 
-  public static String getMonthString()
+  /**
+   * Get current month in string.
+   * 
+   * @return String representation of current month.
+   */
+  public static String getCurrentMonthFormatted()
   {
     return my_report_format.format(my_date);
   }
 
+  /**
+   * Gets the current month.
+   * 
+   * @return The current month.
+   */
   public static int getCurrentMonth()
   {
     return my_current_month;
   }
 
+  /**
+   * Gets the number of months per year.
+   * 
+   * @return Number of months per year.
+   */
   public static int getMonthsPerYear()
   {
     return MONTHS_PER_YEAR;
   }
 
+  /**
+   * Gets the milliseconds per week.
+   * 
+   * @return Milliseconds per week.
+   */
   public static int getMillisecondsPerWeek()
   {
     return MILLISECONDS_PER_WEEK;
   }
 
+  /**
+   * Gets the month number of December.
+   * 
+   * @return Month number of December.
+   */
   public static int getDecember()
   {
     return DECEMBER;
   }
 
+  /**
+   * Gets the month number of first month.
+   * 
+   * @return Month number of first month.
+   */
   public static int getFirstMonth()
   {
     return FIRST_MONTH;
