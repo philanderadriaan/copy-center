@@ -21,7 +21,13 @@ public final class DateUtility
    * Number of months per year.
    */
   private static final int MONTHS_PER_YEAR = 12;
+  /**
+   * Month number for december.
+   */
   private static final int DECEMBER = 12;
+  /**
+   * Number of milliseconds per week.
+   */
   private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
   /**
    * Calendar instance containing today's date.
@@ -108,10 +114,11 @@ public final class DateUtility
    * 
    * @return Last month in string.
    */
-  public static String getPreviousMonthString()
+  public static String getPreviousMonthFormatted()
   {
     final Calendar calendar = Calendar.getInstance();
     final Date date = calendar.getTime();
+    date.setDate(1);
     date.setMonth(my_previous_month - 1);
     final String previous_month_string = my_report_format.format(date);
     return previous_month_string;
@@ -125,10 +132,10 @@ public final class DateUtility
    */
   public static boolean isBeforeCurrentMonth(final String the_date_string)
   {
-    final int month = getMonth(the_date_string);
-    final int month_number = getMonthRank(month);
+    final int month = getMonthFromString(the_date_string);
+    final int month_rank = getMonthRank(month);
     final int this_month_number = getMonthRank(my_current_month);
-    final boolean before_this_month = month_number < this_month_number;
+    final boolean before_this_month = month_rank < this_month_number;
     return before_this_month;
   }
 
@@ -140,7 +147,7 @@ public final class DateUtility
    */
   public static boolean isPreviousMonth(final String the_date_string)
   {
-    final int month = getMonth(the_date_string);
+    final int month = getMonthFromString(the_date_string);
     final boolean is_previous_month = month == my_previous_month;
     return is_previous_month;
   }
@@ -163,7 +170,7 @@ public final class DateUtility
    * @param the_date_string Date in M/d/yyyy.
    * @return Month on that date.
    */
-  private static int getMonth(final String the_date_string)
+  private static int getMonthFromString(final String the_date_string)
   {
     final String[] date_split = the_date_string.split("/");
     final int month_index = 0;
