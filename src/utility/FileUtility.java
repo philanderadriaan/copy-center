@@ -29,4 +29,9 @@ public final class FileUtility
     final List<File> file_list = Arrays.asList(file_array);
     return file_list;
   }
+  
+  public static boolean containsKeyword()
+  {
+    return false;
+  }
 }
