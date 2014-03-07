@@ -318,8 +318,6 @@ public class DataManager
 
       if (DateUtility.isBeforeCurrentMonth(date_string))
       {
-
-        System.out.println(month);
         final String current_location = my_output.get(i).get(0);
         final String current_budget_code = my_output.get(i).get(1);
         final String key = current_location + ", " + current_budget_code;
@@ -414,9 +412,10 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if ((month - DateUtility.getFirstMonth()) % DateUtility.getMonthsPerYear() <= NumberUtility
-          .getPositiveModulo(DateUtility.getPreviousMonth() - DateUtility.getFirstMonth(),
-                             DateUtility.getMonthsPerYear()))
+      if(DateUtility.isBeforeCurrentMonth(date_string))
+//      if ((month - DateUtility.getFirstMonth()) % DateUtility.getMonthsPerYear() <= NumberUtility
+//          .getPositiveModulo(DateUtility.getPreviousMonth() - DateUtility.getFirstMonth(),
+//                             DateUtility.getMonthsPerYear()))
       {
 
         final int location_index = 0;
@@ -535,9 +534,9 @@ public class DataManager
     final List<List<String>> excel = new ArrayList<List<String>>();
     final List<String> excel_head = new ArrayList<String>();
     excel_head.add("Location: Employee:");
-    excel_head.add(DateUtility.getCurrentMonthFormatted());
+    excel_head.add(DateUtility.getPreviousMonthFormatted());
     excel_head.add("");
-    excel_head.add("School Year to End of " + DateUtility.getCurrentMonthFormatted() + ":");
+    excel_head.add("School Year to End of " + DateUtility.getPreviousMonthFormatted() + ":");
     excel.add(excel_head);
     for (String i : table_map.keySet())
     {
