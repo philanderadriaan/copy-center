@@ -1,3 +1,4 @@
+
 package object;
 
 import java.util.HashMap;
@@ -15,6 +16,10 @@ public class IntegerAggregator
    * Map to store the aggregation.
    */
   private Map<String, Integer> my_map = new HashMap<String, Integer>();
+  /**
+   * Total for all values.
+   */
+  private int my_total;
 
   /**
    * Creates the object.
@@ -22,6 +27,16 @@ public class IntegerAggregator
   public IntegerAggregator()
   {
 
+  }
+
+  /**
+   * Gets the total value.
+   * 
+   * @return Total value.
+   */
+  public int getTotal()
+  {
+    return my_total;
   }
 
   /**
@@ -52,6 +67,7 @@ public class IntegerAggregator
     {
       my_map.put(the_key, the_value);
     }
+    my_total += the_value;
   }
 
   /**

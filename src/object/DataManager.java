@@ -3,12 +3,9 @@ package object;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -31,46 +28,46 @@ import utility.XLSUtility;
  */
 public class DataManager
 {
-//  /**
-//   * Number of months per year.
-//   */
-//  private static final int DateUtility.getMonthsPerYear() = 12;
-//  /**
-//   * December's number.
-//   */
-//  private static final int DECEMBER = 12;
-//  /**
-//   * First month of the school year.
-//   */
-//  private static final int DateUtility.getFirstMonth() = 9;
-//  /**
-//   * Milliseconds per week.
-//   */
-//  private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
-//  /**
-//   * First month of the fiscal year. Default is september.
-//   */
-//  private static final int DateUtility.getFirstMonth()_OF_YEAR = 9;
-//  /**
-//   * Current month.
-//   */
-//  private int my_month;
-//  /**
-//   * Last month.
-//   */
-//  private int my_last_month;
-//  /**
-//   * Current year.
-//   */
-//  private int my_year;
-//  /**
-//   * Last month.
-//   */
-//  private int my_last_month_year;
-//  /**
-//   * Current month in english.
-//   */
-//  private String my_month_string;
+  // /**
+  // * Number of months per year.
+  // */
+  // private static final int DateUtility.getMonthsPerYear() = 12;
+  // /**
+  // * December's number.
+  // */
+  // private static final int DECEMBER = 12;
+  // /**
+  // * First month of the school year.
+  // */
+  // private static final int DateUtility.getFirstMonth() = 9;
+  // /**
+  // * Milliseconds per week.
+  // */
+  // private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
+  // /**
+  // * First month of the fiscal year. Default is september.
+  // */
+  // private static final int DateUtility.getFirstMonth()_OF_YEAR = 9;
+  // /**
+  // * Current month.
+  // */
+  // private int my_month;
+  // /**
+  // * Last month.
+  // */
+  // private int my_last_month;
+  // /**
+  // * Current year.
+  // */
+  // private int my_year;
+  // /**
+  // * Last month.
+  // */
+  // private int my_last_month_year;
+  // /**
+  // * Current month in english.
+  // */
+  // private String my_month_string;
   /**
    * File name for the order table.
    */
@@ -96,7 +93,7 @@ public class DataManager
    */
   public DataManager() throws IOException
   {
-    //setDate();
+    // setDate();
 
     setOrderTableName();
 
@@ -159,31 +156,31 @@ public class DataManager
   /**
    * Sets all the values of the date to today's date.
    */
-//  private void setDate()
-//  {
-//    final Calendar today = Calendar.getInstance();
-//    // final Date today_date = today.getTime();
-//    my_month = today.get(Calendar.MONTH) + 1;
-//    my_year = today.get(Calendar.YEAR);
-//
-//    my_last_month = (my_month - 2) % DateUtility.getMonthsPerYear() + 1;
-//    if (my_last_month == DateUtility.getDecember())
-//    {
-//      my_last_month_year = my_year - 1;
-//    }
-//    else
-//    {
-//      my_last_month_year = my_year;
-//    }
-//
-//    final Calendar last_month_calendar = Calendar.getInstance();
-//    last_month_calendar.set(Calendar.MONTH, my_last_month - 1);
-//    last_month_calendar.set(Calendar.YEAR, my_last_month_year);
-//    final Date last_month_date = last_month_calendar.getTime();
-//
-//    final Format date_formatter = new SimpleDateFormat("MMMM y");
-//    my_month_string = date_formatter.format(last_month_date);
-//  }
+  // private void setDate()
+  // {
+  // final Calendar today = Calendar.getInstance();
+  // // final Date today_date = today.getTime();
+  // my_month = today.get(Calendar.MONTH) + 1;
+  // my_year = today.get(Calendar.YEAR);
+  //
+  // my_last_month = (my_month - 2) % DateUtility.getMonthsPerYear() + 1;
+  // if (my_last_month == DateUtility.getDecember())
+  // {
+  // my_last_month_year = my_year - 1;
+  // }
+  // else
+  // {
+  // my_last_month_year = my_year;
+  // }
+  //
+  // final Calendar last_month_calendar = Calendar.getInstance();
+  // last_month_calendar.set(Calendar.MONTH, my_last_month - 1);
+  // last_month_calendar.set(Calendar.YEAR, my_last_month_year);
+  // final Date last_month_date = last_month_calendar.getTime();
+  //
+  // final Format date_formatter = new SimpleDateFormat("MMMM y");
+  // my_month_string = date_formatter.format(last_month_date);
+  // }
 
   /**
    * Sets the order file name to the appropriate name.
@@ -309,7 +306,7 @@ public class DataManager
     final Map<String, Double> month_aggregation = new TreeMap<String, Double>();
     final Map<String, Double> aggregation = new TreeMap<String, Double>();
     double month_total = 0;
-    double total = 0;
+    double year_total = 0;
 
     for (int i = 0; i < my_output.size(); i++)
     {
@@ -319,16 +316,16 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if ((month - DateUtility.getFirstMonth()) % DateUtility.getMonthsPerYear() <= NumberUtility
-          .getPositiveModulo(DateUtility.getPreviousMonth() - DateUtility.getFirstMonth(), DateUtility.getMonthsPerYear()))
+      if (DateUtility.isBeforeCurrentMonth(date_string))
       {
 
+        System.out.println(month);
         final String current_location = my_output.get(i).get(0);
         final String current_budget_code = my_output.get(i).get(1);
         final String key = current_location + ", " + current_budget_code;
         final String job_cost_string = my_output.get(i).get(2);
         final double job_cost = Double.valueOf(job_cost_string);
-        total += job_cost;
+        year_total += job_cost;
 
         if (aggregation.containsKey(key))
         {
@@ -342,7 +339,7 @@ public class DataManager
           month_aggregation.put(key, 0.0);
         }
 
-        if (month % DateUtility.getMonthsPerYear() == DateUtility.getPreviousMonth())
+        if (DateUtility.isPreviousMonth(date_string))
         {
           month_total += job_cost;
           if (month_aggregation.containsKey(key))
@@ -363,8 +360,8 @@ public class DataManager
     final List<String> header = new ArrayList<>();
     header.add("Location:");
     header.add("Budget Code:");
-    header.add(DateUtility.getCurrentMonthFormatted());
-    header.add("School Year to End of " + DateUtility.getCurrentMonthFormatted() + ":");
+    header.add(DateUtility.getPreviousMonthFormatted());
+    header.add("School Year to End of " + DateUtility.getPreviousMonthFormatted() + ":");
     my_output.add(header);
 
     my_output.add(new ArrayList<String>());
@@ -380,7 +377,7 @@ public class DataManager
     }
     my_output.add(new ArrayList<String>());
     my_output.add(Arrays.asList(new String[] {"Total for North Kitsap School District", "",
-        NumberUtility.getMoney(month_total, true), NumberUtility.getMoney(total, true)}));
+        NumberUtility.getMoney(month_total, true), NumberUtility.getMoney(year_total, true)}));
     XLSUtility.write("Report/Cost Per Location.xls", my_output);
 
     return my_output;
@@ -418,7 +415,8 @@ public class DataManager
       final int month = Integer.valueOf(month_string);
 
       if ((month - DateUtility.getFirstMonth()) % DateUtility.getMonthsPerYear() <= NumberUtility
-          .getPositiveModulo(DateUtility.getPreviousMonth() - DateUtility.getFirstMonth(), DateUtility.getMonthsPerYear()))
+          .getPositiveModulo(DateUtility.getPreviousMonth() - DateUtility.getFirstMonth(),
+                             DateUtility.getMonthsPerYear()))
       {
 
         final int location_index = 0;
@@ -685,48 +683,45 @@ public class DataManager
       final String[] bill_date_split = bill_date_string.split("/");
       final String month_string = bill_date_split[0];
       final int current_month = Integer.valueOf(month_string);
+      final int description_index = 1;
+      final String current_description = i.get(description_index);
+      Map<String, Integer> description_map;
+      if (map.containsKey(current_description))
       {
-        final int description_index = 1;
-        final String current_description = i.get(description_index);
-        Map<String, Integer> description_map;
-        if (map.containsKey(current_description))
-        {
-          description_map = map.get(current_description);
-        }
-        else
-        {
-          description_map = new TreeMap<String, Integer>();
-        }
-        final int location_index = 0;
-        final String current_location = i.get(location_index);
-
-        final int quantity_index = 2;
-        final String current_quantity_string = i.get(quantity_index);
-        final int current_quantity = Integer.valueOf(current_quantity_string);
-        int total_quantity_location;
-        if (description_map.containsKey(current_location))
-        {
-          total_quantity_location = description_map.get(current_location);
-        }
-        else
-        {
-          total_quantity_location = 0;
-        }
-        total_quantity_location += current_quantity;
-        description_map.put(current_location, total_quantity_location);
-        map.put(current_description, description_map);
-        int total_quantity_description;
-        if (description_total_map.containsKey(current_description))
-        {
-          total_quantity_description = description_total_map.get(current_description);
-        }
-        else
-        {
-          total_quantity_description = 0;
-        }
-        total_quantity_description += current_quantity;
-        description_total_map.put(current_description, total_quantity_description);
+        description_map = map.get(current_description);
       }
+      else
+      {
+        description_map = new TreeMap<String, Integer>();
+      }
+      final int location_index = 0;
+      final String current_location = i.get(location_index);
+      final int quantity_index = 2;
+      final String current_quantity_string = i.get(quantity_index);
+      final int current_quantity = Integer.valueOf(current_quantity_string);
+      int total_quantity_location;
+      if (description_map.containsKey(current_location))
+      {
+        total_quantity_location = description_map.get(current_location);
+      }
+      else
+      {
+        total_quantity_location = 0;
+      }
+      total_quantity_location += current_quantity;
+      description_map.put(current_location, total_quantity_location);
+      map.put(current_description, description_map);
+      int total_quantity_description;
+      if (description_total_map.containsKey(current_description))
+      {
+        total_quantity_description = description_total_map.get(current_description);
+      }
+      else
+      {
+        total_quantity_description = 0;
+      }
+      total_quantity_description += current_quantity;
+      description_total_map.put(current_description, total_quantity_description);
     }
     final List<List<String>> excel = new ArrayList<List<String>>();
     final List<String> excel_head = new ArrayList<String>();
