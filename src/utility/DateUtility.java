@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public final class DateUtility
 {
-  private static final int EPOCH = 1900;
+  private static final int UNIX_EPOCH = 1900;
   /**
    * First month of the school year.
    */
@@ -58,8 +58,8 @@ public final class DateUtility
 
   public static int getYear()
   {
-    int java_year = my_date.getYear();
-    int real_year = EPOCH + java_year;
+    final int java_year = my_date.getYear();
+    final int real_year = UNIX_EPOCH + java_year;
     return real_year;
   }
 
@@ -113,8 +113,8 @@ public final class DateUtility
     final Calendar calendar = Calendar.getInstance();
     final Date date = calendar.getTime();
     date.setMonth(my_previous_month - 1);
-    final String last_month_string = my_report_format.format(date);
-    return last_month_string;
+    final String previous_month_string = my_report_format.format(date);
+    return previous_month_string;
   }
 
   /**
@@ -123,7 +123,7 @@ public final class DateUtility
    * @param the_date_string Current date in M/d/yyyy
    * @return true if date is before this month, false if otherwise.
    */
-  public static boolean isBeforeThisMonth(final String the_date_string)
+  public static boolean isBeforeCurrentMonth(final String the_date_string)
   {
     final int month = getMonth(the_date_string);
     final int month_number = getMonthRank(month);
@@ -141,8 +141,8 @@ public final class DateUtility
   public static boolean isPreviousMonth(final String the_date_string)
   {
     final int month = getMonth(the_date_string);
-    final boolean is_last_month = month == my_previous_month;
-    return is_last_month;
+    final boolean is_previous_month = month == my_previous_month;
+    return is_previous_month;
   }
 
   /**
