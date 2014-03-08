@@ -412,10 +412,12 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if(DateUtility.isBeforeCurrentMonth(date_string))
-//      if ((month - DateUtility.getFirstMonth()) % DateUtility.getMonthsPerYear() <= NumberUtility
-//          .getPositiveModulo(DateUtility.getPreviousMonth() - DateUtility.getFirstMonth(),
-//                             DateUtility.getMonthsPerYear()))
+      if (DateUtility.isBeforeCurrentMonth(date_string))
+      // if ((month - DateUtility.getFirstMonth()) %
+      // DateUtility.getMonthsPerYear() <= NumberUtility
+      // .getPositiveModulo(DateUtility.getPreviousMonth() -
+      // DateUtility.getFirstMonth(),
+      // DateUtility.getMonthsPerYear()))
       {
 
         final int location_index = 0;
@@ -682,45 +684,48 @@ public class DataManager
       final String[] bill_date_split = bill_date_string.split("/");
       final String month_string = bill_date_split[0];
       final int current_month = Integer.valueOf(month_string);
-      final int description_index = 1;
-      final String current_description = i.get(description_index);
-      Map<String, Integer> description_map;
-      if (map.containsKey(current_description))
+      if (current_month % DateUtility.getMonthsPerYear() == DateUtility.getPreviousMonth())
       {
-        description_map = map.get(current_description);
+        final int description_index = 1;
+        final String current_description = i.get(description_index);
+        Map<String, Integer> description_map;
+        if (map.containsKey(current_description))
+        {
+          description_map = map.get(current_description);
+        }
+        else
+        {
+          description_map = new TreeMap<String, Integer>();
+        }
+        final int location_index = 0;
+        final String current_location = i.get(location_index);
+        final int quantity_index = 2;
+        final String current_quantity_string = i.get(quantity_index);
+        final int current_quantity = Integer.valueOf(current_quantity_string);
+        int total_quantity_location;
+        if (description_map.containsKey(current_location))
+        {
+          total_quantity_location = description_map.get(current_location);
+        }
+        else
+        {
+          total_quantity_location = 0;
+        }
+        total_quantity_location += current_quantity;
+        description_map.put(current_location, total_quantity_location);
+        map.put(current_description, description_map);
+        int total_quantity_description;
+        if (description_total_map.containsKey(current_description))
+        {
+          total_quantity_description = description_total_map.get(current_description);
+        }
+        else
+        {
+          total_quantity_description = 0;
+        }
+        total_quantity_description += current_quantity;
+        description_total_map.put(current_description, total_quantity_description);
       }
-      else
-      {
-        description_map = new TreeMap<String, Integer>();
-      }
-      final int location_index = 0;
-      final String current_location = i.get(location_index);
-      final int quantity_index = 2;
-      final String current_quantity_string = i.get(quantity_index);
-      final int current_quantity = Integer.valueOf(current_quantity_string);
-      int total_quantity_location;
-      if (description_map.containsKey(current_location))
-      {
-        total_quantity_location = description_map.get(current_location);
-      }
-      else
-      {
-        total_quantity_location = 0;
-      }
-      total_quantity_location += current_quantity;
-      description_map.put(current_location, total_quantity_location);
-      map.put(current_description, description_map);
-      int total_quantity_description;
-      if (description_total_map.containsKey(current_description))
-      {
-        total_quantity_description = description_total_map.get(current_description);
-      }
-      else
-      {
-        total_quantity_description = 0;
-      }
-      total_quantity_description += current_quantity;
-      description_total_map.put(current_description, total_quantity_description);
     }
     final List<List<String>> excel = new ArrayList<List<String>>();
     final List<String> excel_head = new ArrayList<String>();
