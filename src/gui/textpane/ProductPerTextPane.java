@@ -9,6 +9,8 @@ import java.util.List;
 
 import javax.swing.JTextPane;
 
+import utility.DateUtility;
+
 /**
  * Text Pane for product per <anything>.
  * 
@@ -30,7 +32,7 @@ public class ProductPerTextPane extends JTextPane
     final Calendar calendar = Calendar.getInstance();
     final Date today = calendar.getTime();
     final Format date_formatter = new SimpleDateFormat("MMMM y");
-    final String this_month = date_formatter.format(today);
+    final String this_month = DateUtility.getPreviousMonthFormatted();;
     
     setContentType("text/html");
     final StringBuilder report_builder = new StringBuilder();
