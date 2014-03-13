@@ -23,7 +23,7 @@ public class HeaderManager
   /**
    * Maps all the headers to table names.
    */
-  private Map<String, List<String>> header_map = new HashMap<String, List<String>>();
+  private Map<String, List<String>> my_header_map = new HashMap<String, List<String>>();
 
   /**
    * @throws IOException 
@@ -37,7 +37,7 @@ public class HeaderManager
       final String path = i.getPath();
       final List<List<String>> data = CSVUtility.read(path);
       final List<String> header = data.get(0);
-      header_map.put(path, header);
+      my_header_map.put(path, header);
     }
   }
 
@@ -50,7 +50,7 @@ public class HeaderManager
    */
   public int getIndex(final String the_table, final String the_column)
   {
-    final List<String> header = header_map.get(the_table);
+    final List<String> header = my_header_map.get(the_table);
     final int index = header.indexOf(the_column);
     return index;
   }
@@ -58,12 +58,12 @@ public class HeaderManager
   /**
    * Gets the header
    * 
-   * @param the_table
-   * @return
+   * @param the_table Table of the headers.
+   * @return A list of strings containing header.
    */
   public List<String> getHeader(final String the_table)
   {
-    final List<String> header = header_map.get(the_table);
+    final List<String> header = my_header_map.get(the_table);
     return header;
   }
 }

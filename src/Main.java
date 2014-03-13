@@ -1,8 +1,11 @@
 import gui.frame.NKFrame;
 
+import java.io.IOException;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * The class that starts the whole program.
@@ -29,6 +32,7 @@ public final class Main
    */
   public static void main(final String[] the_args)
   {
+
     try
     {
       for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
@@ -40,10 +44,12 @@ public final class Main
       }
       new NKFrame();
     }
-    catch (final Exception e)
+    catch (final IOException | ClassNotFoundException | InstantiationException
+        | IllegalAccessException | UnsupportedLookAndFeelException exception)
     {
-      JOptionPane.showMessageDialog(null, e.toString(), null, JOptionPane.ERROR_MESSAGE);
-      e.printStackTrace();
+      JOptionPane.showMessageDialog(null, exception.toString(), null,
+                                    JOptionPane.ERROR_MESSAGE);
+      exception.printStackTrace();
     }
   }
 }

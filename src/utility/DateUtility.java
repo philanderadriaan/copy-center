@@ -142,6 +142,7 @@ public final class DateUtility
   /**
    * Gets the month previous to this month.
    * 
+   * @return Previous month number.
    */
   public static int getPreviousMonth()
   {
