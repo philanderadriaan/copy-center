@@ -14,6 +14,9 @@ import java.util.Date;
  */
 public final class DateUtility
 {
+  /**
+   * Start year of unix time.
+   */
   private static final int UNIX_EPOCH = 1900;
   /**
    * First month of the school year.

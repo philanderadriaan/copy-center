@@ -5,7 +5,7 @@ package object;
 
 /**
  * @author padriaan
- *
+ * @version 1
  */
 public class DoubleAggregator
 {

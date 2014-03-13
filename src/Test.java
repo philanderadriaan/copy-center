@@ -1,28 +1,23 @@
 import utility.FileUtility;
 
 /**
- * 
- */
-
-/**
  * @author padriaan
- *
+ * @version 1
  */
-public class Test
+public final class Test
 {
 
   /**
-   * 
+   * Cannot construct this class.
    */
   private Test()
   {
-    // TODO Auto-generated constructor stub
   }
 
   /**
    * @param args
    */
-  public static void main(String[] args)
+  public static void main(final String[] args)
   {
     System.out.println(FileUtility.getFiles("Table"));
   }

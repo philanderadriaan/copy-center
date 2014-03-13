@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 package utility;
 
@@ -10,18 +7,24 @@ import java.util.List;
 
 /**
  * @author padriaan
- * 
+ * @version 1
  */
 public final class FileUtility
 {
 
   /**
-   * 
+   * Cannot construct this class.
    */
   private FileUtility()
   {
   }
 
+  /**
+   * Gets a list of files in a folder..
+   * 
+   * @param the_folder_name folder name.
+   * @return A list of all files in the folder.
+   */
   public static List<File> getFiles(final String the_folder_name)
   {
     final File folder = new File(the_folder_name);
@@ -30,6 +33,11 @@ public final class FileUtility
     return file_list;
   }
   
+  /**
+   * Whether the file contains that keyword.
+   * 
+   * @return
+   */
   public static boolean containsKeyword()
   {
     return false;

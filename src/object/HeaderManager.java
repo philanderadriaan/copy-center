@@ -15,10 +15,14 @@ import utility.FileUtility;
 
 /**
  * @author padriaan
- * 
+ * @version 1
  */
 public class HeaderManager
 {
+  
+  /**
+   * Maps all the headers to table names.
+   */
   private Map<String, List<String>> header_map = new HashMap<String, List<String>>();
 
   /**
@@ -37,6 +41,13 @@ public class HeaderManager
     }
   }
 
+  /**
+   * Gets the index of the column of the table.
+   * 
+   * @param the_table Table in question.
+   * @param the_column Column needed.
+   * @return Integer of coilumn index.
+   */
   public int getIndex(final String the_table, final String the_column)
   {
     final List<String> header = header_map.get(the_table);
@@ -44,6 +55,12 @@ public class HeaderManager
     return index;
   }
 
+  /**
+   * Gets the header
+   * 
+   * @param the_table
+   * @return
+   */
   public List<String> getHeader(final String the_table)
   {
     final List<String> header = header_map.get(the_table);
