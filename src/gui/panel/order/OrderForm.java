@@ -27,6 +27,8 @@ public class OrderForm extends JPanel
     super(new GridLayout(1, 2));
     add(new LeftForm(the_frame));
     add(new RightForm(the_frame));
+    
+    
   }
 
 }
