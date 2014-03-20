@@ -91,9 +91,7 @@ public class AddOrderAction extends AbstractAction
     {
       JOptionPane.showMessageDialog(null, e.getMessage(), null, JOptionPane.ERROR_MESSAGE);
     }
-
     my_frame.getLocationLearner().add(input.get(2) + " " + input.get(1), input.get(0));
-
     final List<List<String>> new_data = data_manager.getOrder(my_frame.isFilterSelected());
     my_frame.drawTable(new_data,
                        my_frame.getDataManager().getHeaderMap()
