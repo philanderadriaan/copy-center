@@ -105,4 +105,19 @@ public final class CSVs
     writer.append(builder.toString());
     writer.close();
   }
+
+  private String toLine(final List<String> the_data)
+  {
+    final StringBuilder string_builder = new StringBuilder();
+    final String first_column = the_data.get(0);
+    string_builder.append(first_column);
+    for (int i = 1; i < the_data.size(); i++)
+    {
+      string_builder.append(',');
+      final String current_column = the_data.get(i);
+      string_builder.append(current_column);
+    }
+    String line = string_builder.toString();
+    return line;
+  }
 }

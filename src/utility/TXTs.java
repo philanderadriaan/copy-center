@@ -2,7 +2,9 @@
 package utility;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,5 +45,33 @@ public final class TXTs
     }
     buffered_reader.close();
     return data;
+  }
+
+  public static void write(final String the_path, final List<String> the_data)
+      throws IOException
+  {
+    write(the_path, the_data, false);
+  }
+
+  public static void append(final String the_path, final String the_line) throws IOException
+  {
+    final List<String> data = new ArrayList<String>();
+    data.add(the_line);
+    write(the_path, data, true);
+  }
+
+  private static void write(final String the_path, final List<String> the_data,
+                            final boolean the_append) throws IOException
+  {
+    final FileWriter file_writer = new FileWriter(the_path, the_append);
+    final BufferedWriter buffered_writer = new BufferedWriter(file_writer);
+    final StringBuilder string_builder = new StringBuilder();
+    for (String i : the_data)
+    {
+      string_builder.append(i);
+      string_builder.append("\n");
+    }
+    buffered_writer.write(string_builder.toString());
+    buffered_writer.close();
   }
 }

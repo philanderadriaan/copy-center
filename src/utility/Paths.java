@@ -13,7 +13,7 @@ public class Paths
   /**
    * 
    */
-  public Paths()
+  private Paths()
   {
     // TODO Auto-generated constructor stub
   }

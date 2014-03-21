@@ -28,46 +28,6 @@ import utility.XLS;
  */
 public class DataManager
 {
-  // /**
-  // * Number of months per year.
-  // */
-  // private static final int DateUtility.getMonthsPerYear() = 12;
-  // /**
-  // * December's number.
-  // */
-  // private static final int DECEMBER = 12;
-  // /**
-  // * First month of the school year.
-  // */
-  // private static final int DateUtility.getFirstMonth() = 9;
-  // /**
-  // * Milliseconds per week.
-  // */
-  // private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
-  // /**
-  // * First month of the fiscal year. Default is september.
-  // */
-  // private static final int DateUtility.getFirstMonth()_OF_YEAR = 9;
-  // /**
-  // * Current month.
-  // */
-  // private int my_month;
-  // /**
-  // * Last month.
-  // */
-  // private int my_last_month;
-  // /**
-  // * Current year.
-  // */
-  // private int my_year;
-  // /**
-  // * Last month.
-  // */
-  // private int my_last_month_year;
-  // /**
-  // * Current month in english.
-  // */
-  // private String my_month_string;
   /**
    * File name for the order table.
    */
@@ -93,7 +53,6 @@ public class DataManager
    */
   public DataManager() throws IOException
   {
-    // setDate();
 
     setOrderTableName();
 
@@ -152,35 +111,6 @@ public class DataManager
     user_header.add("Location ID");
     my_header_map.put("Table\\User.csv", user_header);
   }
-
-  /**
-   * Sets all the values of the date to today's date.
-   */
-  // private void setDate()
-  // {
-  // final Calendar today = Calendar.getInstance();
-  // // final Date today_date = today.getTime();
-  // my_month = today.get(Calendar.MONTH) + 1;
-  // my_year = today.get(Calendar.YEAR);
-  //
-  // my_last_month = (my_month - 2) % DateUtility.getMonthsPerYear() + 1;
-  // if (my_last_month == DateUtility.getDecember())
-  // {
-  // my_last_month_year = my_year - 1;
-  // }
-  // else
-  // {
-  // my_last_month_year = my_year;
-  // }
-  //
-  // final Calendar last_month_calendar = Calendar.getInstance();
-  // last_month_calendar.set(Calendar.MONTH, my_last_month - 1);
-  // last_month_calendar.set(Calendar.YEAR, my_last_month_year);
-  // final Date last_month_date = last_month_calendar.getTime();
-  //
-  // final Format date_formatter = new SimpleDateFormat("MMMM y");
-  // my_month_string = date_formatter.format(last_month_date);
-  // }
 
   /**
    * Sets the order file name to the appropriate name.
@@ -413,11 +343,6 @@ public class DataManager
       final int month = Integer.valueOf(month_string);
 
       if (Dates.isBeforeCurrentMonth(date_string))
-      // if ((month - DateUtility.getFirstMonth()) %
-      // DateUtility.getMonthsPerYear() <= NumberUtility
-      // .getPositiveModulo(DateUtility.getPreviousMonth() -
-      // DateUtility.getFirstMonth(),
-      // DateUtility.getMonthsPerYear()))
       {
 
         final int location_index = 0;

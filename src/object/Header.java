@@ -17,7 +17,7 @@ import utility.Folders;
  * @author padriaan
  * @version 1
  */
-public class HeaderManager
+public class Header
 {
   
   /**
@@ -29,7 +29,7 @@ public class HeaderManager
    * @throws IOException 
    * 
    */
-  public HeaderManager() throws IOException
+  public Header() throws IOException
   {
     final List<File> file_list = Folders.getFiles("Header");
     for (File i : file_list)

@@ -51,10 +51,8 @@ public final class XLS
     {
       sheet.autoSizeColumn(i);
     }
-    FileOutputStream output;
-    output = new FileOutputStream(the_path);
+    FileOutputStream output = new FileOutputStream(the_path);
     book.write(output);
     output.close();
   }
-
 }
