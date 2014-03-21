@@ -47,12 +47,24 @@ public final class TXTs
     return data;
   }
 
+  /**
+   * 
+   * @param the_path
+   * @param the_data
+   * @throws IOException
+   */
   public static void overwrite(final String the_path, final List<String> the_data)
       throws IOException
   {
     write(the_path, the_data, false);
   }
 
+  /**
+   * 
+   * @param the_path
+   * @param the_line
+   * @throws IOException
+   */
   public static void add(final String the_path, final String the_line) throws IOException
   {
     final List<String> data = new ArrayList<String>();
@@ -60,6 +72,13 @@ public final class TXTs
     write(the_path, data, true);
   }
 
+  /**
+   * 
+   * @param the_path
+   * @param the_data
+   * @param the_append
+   * @throws IOException
+   */
   private static void write(final String the_path, final List<String> the_data,
                             final boolean the_append) throws IOException
   {

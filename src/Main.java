@@ -47,9 +47,9 @@ public final class Main
     catch (final IOException | ClassNotFoundException | InstantiationException
         | IllegalAccessException | UnsupportedLookAndFeelException exception)
     {
+      exception.printStackTrace();
       JOptionPane.showMessageDialog(null, exception.toString(), null,
                                     JOptionPane.ERROR_MESSAGE);
-      exception.printStackTrace();
     }
   }
 }
