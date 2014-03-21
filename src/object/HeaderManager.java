@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import utility.CSVUtility;
-import utility.FileUtility;
+import utility.CSVs;
+import utility.Folders;
 
 /**
  * @author padriaan
@@ -31,11 +31,11 @@ public class HeaderManager
    */
   public HeaderManager() throws IOException
   {
-    final List<File> file_list = FileUtility.getFiles("Header");
+    final List<File> file_list = Folders.getFiles("Header");
     for (File i : file_list)
     {
       final String path = i.getPath();
-      final List<List<String>> data = CSVUtility.read(path);
+      final List<List<String>> data = CSVs.read(path);
       final List<String> header = data.get(0);
       my_header_map.put(path, header);
     }

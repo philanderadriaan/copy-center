@@ -1,4 +1,4 @@
-import utility.FileUtility;
+import utility.Folders;
 
 /**
  * This class is used for testing.
@@ -23,7 +23,7 @@ public final class Test
    */
   public static void main(final String[] args)
   {
-    System.out.println(FileUtility.getFiles("Table"));
+    System.out.println(Folders.getFiles("Table"));
   }
 
 }

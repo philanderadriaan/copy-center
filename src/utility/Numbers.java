@@ -12,7 +12,7 @@ import java.util.Date;
  * @author Phil Adriaan
  * @version 1
  */
-public final class NumberUtility
+public final class Numbers
 {
   /**
    * Maximum decimal places for a number.
@@ -22,7 +22,7 @@ public final class NumberUtility
   /**
    * Prevents instantiation.
    */
-  private NumberUtility()
+  private Numbers()
   {
   }
 

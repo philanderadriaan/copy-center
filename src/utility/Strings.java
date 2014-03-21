@@ -9,7 +9,7 @@ import enums.PanelEnum;
  * @author Phil Adriaan
  * @version 1
  */
-public final class StringUtility
+public final class Strings
 {
   /**
    * Amount of space(s) for padding around strings.
@@ -23,7 +23,7 @@ public final class StringUtility
   /**
    * Private constructor prevents instantiation.
    */
-  private StringUtility()
+  private Strings()
   {
   }
 

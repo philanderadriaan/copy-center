@@ -14,11 +14,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import utility.CSVUtility;
-import utility.DateUtility;
-import utility.FileUtility;
-import utility.NumberUtility;
-import utility.XLSUtility;
+import utility.CSVs;
+import utility.Dates;
+import utility.Folders;
+import utility.Numbers;
+import utility.XLS;
 
 /**
  * Holds and manages all the data required for this program.
@@ -190,17 +190,17 @@ public class DataManager
     final StringBuilder order_file_name_builder = new StringBuilder();
     order_file_name_builder.append("Order");
 
-    if (DateUtility.getCurrentMonth() < DateUtility.getFirstMonth())
+    if (Dates.getCurrentMonth() < Dates.getFirstMonth())
     {
-      order_file_name_builder.append(DateUtility.getCurrentYear() - 1);
+      order_file_name_builder.append(Dates.getCurrentYear() - 1);
       order_file_name_builder.append('-');
-      order_file_name_builder.append(DateUtility.getCurrentYear());
+      order_file_name_builder.append(Dates.getCurrentYear());
     }
     else
     {
-      order_file_name_builder.append(DateUtility.getCurrentYear());
+      order_file_name_builder.append(Dates.getCurrentYear());
       order_file_name_builder.append('-');
-      order_file_name_builder.append(DateUtility.getCurrentYear() + 1);
+      order_file_name_builder.append(Dates.getCurrentYear() + 1);
     }
 
     order_file_name_builder.append(".csv");
@@ -221,7 +221,7 @@ public class DataManager
     my_data.put("Table\\" + order_file_name, empty_list);
 
     final String order_location = "Table\\" + order_file_name;
-    CSVUtility.write(order_location, empty_list);
+    CSVs.write(order_location, empty_list);
   }
 
   /**
@@ -232,7 +232,7 @@ public class DataManager
    */
   public void refresh() throws IOException
   {
-    final List<File> files = FileUtility.getFiles("Table");
+    final List<File> files = Folders.getFiles("Table");
 
     for (File i : files)
     {
@@ -243,8 +243,8 @@ public class DataManager
       final boolean is_valid_file = !is_order_file || is_valid_order_file;
       if (is_valid_file)
       {
-        my_data.put(i.getPath(), CSVUtility.read(i.getPath()));
-        CSVUtility.write(i.getPath(), my_data.get(i.getPath()));
+        my_data.put(i.getPath(), CSVs.read(i.getPath()));
+        CSVs.write(i.getPath(), my_data.get(i.getPath()));
       }
     }
   }
@@ -271,7 +271,7 @@ public class DataManager
     final List<List<String>> data = my_data.get("Table\\" + order_file_name);
     data.add(the_row);
     my_data.put("Table\\" + order_file_name, data);
-    CSVUtility.append("Table\\" + order_file_name, the_row);
+    CSVs.append("Table\\" + order_file_name, the_row);
   }
 
   /**
@@ -316,7 +316,7 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if (DateUtility.isBeforeCurrentMonth(date_string))
+      if (Dates.isBeforeCurrentMonth(date_string))
       {
         final String current_location = my_output.get(i).get(0);
         final String current_budget_code = my_output.get(i).get(1);
@@ -337,7 +337,7 @@ public class DataManager
           month_aggregation.put(key, 0.0);
         }
 
-        if (DateUtility.isPreviousMonth(date_string))
+        if (Dates.isPreviousMonth(date_string))
         {
           month_total += job_cost;
           if (month_aggregation.containsKey(key))
@@ -358,8 +358,8 @@ public class DataManager
     final List<String> header = new ArrayList<>();
     header.add("Location:");
     header.add("Budget Code:");
-    header.add(DateUtility.getPreviousMonthFormatted());
-    header.add("School Year to End of " + DateUtility.getPreviousMonthFormatted() + ":");
+    header.add(Dates.getPreviousMonthFormatted());
+    header.add("School Year to End of " + Dates.getPreviousMonthFormatted() + ":");
     my_output.add(header);
 
     my_output.add(new ArrayList<String>());
@@ -370,13 +370,13 @@ public class DataManager
       final String loc = key_split[0];
       final String bc = key_split[1];
       my_output.add(Arrays.asList(new String[] {loc, bc,
-          NumberUtility.getMoney(month_aggregation.get(i), false),
-          NumberUtility.getMoney(aggregation.get(i), false)}));
+          Numbers.getMoney(month_aggregation.get(i), false),
+          Numbers.getMoney(aggregation.get(i), false)}));
     }
     my_output.add(new ArrayList<String>());
     my_output.add(Arrays.asList(new String[] {"Total for North Kitsap School District", "",
-        NumberUtility.getMoney(month_total, true), NumberUtility.getMoney(year_total, true)}));
-    XLSUtility.write("Report/Cost Per Location.xls", my_output);
+        Numbers.getMoney(month_total, true), Numbers.getMoney(year_total, true)}));
+    XLS.write("Report/Cost Per Location.xls", my_output);
 
     return my_output;
   }
@@ -412,7 +412,7 @@ public class DataManager
       final String month_string = date_split[0];
       final int month = Integer.valueOf(month_string);
 
-      if (DateUtility.isBeforeCurrentMonth(date_string))
+      if (Dates.isBeforeCurrentMonth(date_string))
       // if ((month - DateUtility.getFirstMonth()) %
       // DateUtility.getMonthsPerYear() <= NumberUtility
       // .getPositiveModulo(DateUtility.getPreviousMonth() -
@@ -444,7 +444,7 @@ public class DataManager
           double total_cost = location_cost_map.get(key);
           total_cost += current_cost;
           location_cost_map.put(key, total_cost);
-          if (month % DateUtility.getMonthsPerYear() == DateUtility.getPreviousMonth())
+          if (month % Dates.getMonthsPerYear() == Dates.getPreviousMonth())
           {
             int month_quantity = location_quantity_month_map.get(key);
             month_quantity += current_quantity;
@@ -459,7 +459,7 @@ public class DataManager
           key_set.add(key);
           location_quantity_map.put(key, current_quantity);
           location_cost_map.put(key, current_cost);
-          if (month % DateUtility.getMonthsPerYear() == DateUtility.getPreviousMonth())
+          if (month % Dates.getMonthsPerYear() == Dates.getPreviousMonth())
           {
             location_quantity_month_map.put(key, current_quantity);
             location_cost_month_map.put(key, current_cost);
@@ -488,10 +488,10 @@ public class DataManager
         final List<List<String>> table = table_map.get(loc);
         final List<String> row = new ArrayList<String>();
         row.add(name);
-        row.add(NumberUtility.getQuantity(location_quantity_month_map.get(i)));
-        row.add(NumberUtility.getMoney(location_cost_month_map.get(i), true));
-        row.add(NumberUtility.getQuantity(location_quantity_map.get(i)));
-        row.add(NumberUtility.getMoney(location_cost_map.get(i), true));
+        row.add(Numbers.getQuantity(location_quantity_month_map.get(i)));
+        row.add(Numbers.getMoney(location_cost_month_map.get(i), true));
+        row.add(Numbers.getQuantity(location_quantity_map.get(i)));
+        row.add(Numbers.getMoney(location_cost_map.get(i), true));
         table.add(row);
         table_map.put(loc, table);
 
@@ -520,10 +520,10 @@ public class DataManager
         final List<List<String>> table = new ArrayList<List<String>>();
         final List<String> row = new ArrayList<String>();
         row.add(name);
-        row.add(NumberUtility.getQuantity(location_quantity_month_map.get(i)));
-        row.add(NumberUtility.getMoney(location_cost_month_map.get(i), true));
-        row.add(NumberUtility.getQuantity(location_quantity_map.get(i)));
-        row.add(NumberUtility.getMoney(location_cost_map.get(i), true));
+        row.add(Numbers.getQuantity(location_quantity_month_map.get(i)));
+        row.add(Numbers.getMoney(location_cost_month_map.get(i), true));
+        row.add(Numbers.getQuantity(location_quantity_map.get(i)));
+        row.add(Numbers.getMoney(location_cost_map.get(i), true));
         table.add(row);
         table_map.put(loc, table);
 
@@ -536,9 +536,9 @@ public class DataManager
     final List<List<String>> excel = new ArrayList<List<String>>();
     final List<String> excel_head = new ArrayList<String>();
     excel_head.add("Location: Employee:");
-    excel_head.add(DateUtility.getPreviousMonthFormatted());
+    excel_head.add(Dates.getPreviousMonthFormatted());
     excel_head.add("");
-    excel_head.add("School Year to End of " + DateUtility.getPreviousMonthFormatted() + ":");
+    excel_head.add("School Year to End of " + Dates.getPreviousMonthFormatted() + ":");
     excel.add(excel_head);
     for (String i : table_map.keySet())
     {
@@ -550,13 +550,13 @@ public class DataManager
       }
       final List<String> aggregation = new ArrayList<String>();
       aggregation.add("Total for " + i);
-      aggregation.add(NumberUtility.getQuantity(total_quantity_month.get(i)));
-      aggregation.add(NumberUtility.getMoney(total_cost_month.get(i), true));
-      aggregation.add(NumberUtility.getQuantity(total_quantity.get(i)));
-      aggregation.add(NumberUtility.getMoney(total_cost.get(i), true));
+      aggregation.add(Numbers.getQuantity(total_quantity_month.get(i)));
+      aggregation.add(Numbers.getMoney(total_cost_month.get(i), true));
+      aggregation.add(Numbers.getQuantity(total_quantity.get(i)));
+      aggregation.add(Numbers.getMoney(total_cost.get(i), true));
       excel.add(aggregation);
     }
-    XLSUtility.write("Report/Copies Per Location.xls", excel);
+    XLS.write("Report/Copies Per Location.xls", excel);
     return excel;
   }
 
@@ -584,7 +584,7 @@ public class DataManager
       final String[] bill_date_split = bill_date_string.split("/");
       final String month_string = bill_date_split[0];
       final int current_month = Integer.valueOf(month_string);
-      if (current_month % DateUtility.getMonthsPerYear() == DateUtility.getPreviousMonth())
+      if (current_month % Dates.getMonthsPerYear() == Dates.getPreviousMonth())
       {
         final int description_index = 0;
         final String current_description = i.get(description_index);
@@ -644,20 +644,20 @@ public class DataManager
       for (String j : map.get(i).keySet())
       {
         final int q = location_quantity_map.get(j);
-        final String qs = NumberUtility.getQuantity(q);
+        final String qs = Numbers.getQuantity(q);
         final List<String> location_quantity_list = new ArrayList<String>();
         location_quantity_list.add(j);
         location_quantity_list.add(qs);
         excel.add(location_quantity_list);
       }
       final String description_total_string =
-          NumberUtility.getQuantity(description_total_map.get(i));
+          Numbers.getQuantity(description_total_map.get(i));
       final List<String> total_list = new ArrayList<String>();
       total_list.add(i);
       total_list.add(description_total_string);
       excel.add(total_list);
     }
-    XLSUtility.write("Report/Product Per Description.xls", excel);
+    XLS.write("Report/Product Per Description.xls", excel);
     return excel;
   }
 
@@ -684,7 +684,7 @@ public class DataManager
       final String[] bill_date_split = bill_date_string.split("/");
       final String month_string = bill_date_split[0];
       final int current_month = Integer.valueOf(month_string);
-      if (current_month % DateUtility.getMonthsPerYear() == DateUtility.getPreviousMonth())
+      if (current_month % Dates.getMonthsPerYear() == Dates.getPreviousMonth())
       {
         final int description_index = 1;
         final String current_description = i.get(description_index);
@@ -742,20 +742,20 @@ public class DataManager
       for (String j : map.get(i).keySet())
       {
         final int q = location_quantity_map.get(j);
-        final String qs = NumberUtility.getQuantity(q);
+        final String qs = Numbers.getQuantity(q);
         final List<String> location_quantity_list = new ArrayList<String>();
         location_quantity_list.add(j);
         location_quantity_list.add(qs);
         excel.add(location_quantity_list);
       }
       final String description_total_string =
-          NumberUtility.getQuantity(description_total_map.get(i));
+          Numbers.getQuantity(description_total_map.get(i));
       final List<String> total_list = new ArrayList<String>();
       total_list.add(i);
       total_list.add(description_total_string);
       excel.add(total_list);
     }
-    XLSUtility.write("Report/Product Per Location.xls", excel);
+    XLS.write("Report/Product Per Location.xls", excel);
     return excel;
   }
 
@@ -801,7 +801,7 @@ public class DataManager
         d.set(Integer.valueOf(m[2]), Integer.valueOf(m[0]) - 1, Integer.valueOf(m[1]));
         final long n =
             (Calendar.getInstance().getTimeInMillis() - d.getTimeInMillis()) /
-                DateUtility.getMillisecondsPerWeek();
+                Dates.getMillisecondsPerWeek();
         if (0 <= n && n <= 2)
         {
           i++;

@@ -16,13 +16,13 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Phil Adriaan
  * @version 1
  */
-public final class XLSUtility
+public final class XLS
 {
 
   /**
    * Cannot construct this class.
    */
-  private XLSUtility()
+  private XLS()
   {
   }
 
@@ -37,7 +37,7 @@ public final class XLSUtility
       throws IOException
   {
     final Workbook book = new HSSFWorkbook();
-    final Sheet sheet = book.createSheet(StringUtility.getFileNameOnly(the_path));
+    final Sheet sheet = book.createSheet(Strings.getFileNameOnly(the_path));
     for (int i = 0; i < the_data.size(); i++)
     {
       final Row row = sheet.createRow(i);

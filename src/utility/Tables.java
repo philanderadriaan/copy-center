@@ -16,13 +16,13 @@ import javax.swing.SortOrder;
  * @author Phil Adriaan
  * @version 1
  */
-public final class TableUtility
+public final class Tables
 {
 
   /**
    * Prevents instantiation.
    */
-  private TableUtility()
+  private Tables()
   {
   }
 

@@ -13,13 +13,13 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public final class TXTUtility
+public final class TXTs
 {
 
   /**
    * Prevents instantiation.
    */
-  private TXTUtility()
+  private TXTs()
   {
   }
 

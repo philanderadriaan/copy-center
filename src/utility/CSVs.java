@@ -16,13 +16,13 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public final class CSVUtility
+public final class CSVs
 {
 
   /**
    * Private constructor prevents instantiation.
    */
-  private CSVUtility()
+  private CSVs()
   {
   }
 

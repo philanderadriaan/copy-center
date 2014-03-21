@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.swing.JTable;
 
-import utility.TableUtility;
+import utility.Tables;
 
 /**
  * Template for all tables in the program.
@@ -26,7 +26,7 @@ public class NKTable extends JTable
   public NKTable(final List<List<String>> the_data, final List<String> the_header)
   {
     super(getData(the_data), the_header.toArray());
-    TableUtility.sort(this, 0);
+    Tables.sort(this, 0);
   }
 
   /**

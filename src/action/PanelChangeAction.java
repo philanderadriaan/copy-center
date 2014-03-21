@@ -10,7 +10,7 @@ import java.io.IOException;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 
-import utility.StringUtility;
+import utility.Strings;
 
 /**
  * Triggers the change of screen to a desired panel.
@@ -38,7 +38,7 @@ public class PanelChangeAction extends AbstractAction
    */
   public PanelChangeAction(final NKFrame the_frame, final PanelEnum the_panel)
   {
-    super(StringUtility.enumToString(the_panel));
+    super(Strings.enumToString(the_panel));
     my_frame = the_frame;
     my_panel = the_panel;
   }

@@ -7,8 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import utility.CSVUtility;
-import utility.TXTUtility;
+import utility.CSVs;
+import utility.TXTs;
 
 /**
  * This class contains mechanism to learn about user's location according to their histories.
@@ -30,7 +30,7 @@ public class LocationLearner
   /**
    * 
    */
-  private List<String> my_exclusion_list = TXTUtility.read(EXCLUSION_PATH);
+  private List<String> my_exclusion_list = TXTs.read(EXCLUSION_PATH);
 
   /**
    * Map containing history for all selected users.
@@ -47,7 +47,7 @@ public class LocationLearner
   public LocationLearner() throws IOException
   {
 
-    final List<List<String>> histories = CSVUtility.read(HISTORY_PATH);
+    final List<List<String>> histories = CSVs.read(HISTORY_PATH);
 
     for (List<String> i : histories)
     {
@@ -105,7 +105,7 @@ public class LocationLearner
       row.add(0, i);
       histories.add(row);
     }
-    CSVUtility.write(HISTORY_PATH, histories);
+    CSVs.write(HISTORY_PATH, histories);
   }
 
   /**

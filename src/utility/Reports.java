@@ -7,13 +7,13 @@ package utility;
  * @author padriaan
  * @version 1
  */
-public final class ReportUtility
+public final class Reports
 {
 
   /**
    * 
    */
-  private ReportUtility()
+  private Reports()
   {
   }
 

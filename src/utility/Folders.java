@@ -9,13 +9,13 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public final class FileUtility
+public final class Folders
 {
 
   /**
    * Cannot construct this class.
    */
-  private FileUtility()
+  private Folders()
   {
   }
 

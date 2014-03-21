@@ -12,7 +12,7 @@ import java.util.Date;
  * @author padriaan
  * @version 1
  */
-public final class DateUtility
+public final class Dates
 {
   /**
    * Start year of unix time.
@@ -57,13 +57,13 @@ public final class DateUtility
   /**
    * Previous month for today in 1 based index. 1=January, 12=December.
    */
-  private static int my_previous_month = NumberUtility.getPositiveModulo(my_current_month - 2,
+  private static int my_previous_month = Numbers.getPositiveModulo(my_current_month - 2,
                                                                          MONTHS_PER_YEAR) + 1;
 
   /**
    * Utility class. Private constructor prevents instantiation.
    */
-  private DateUtility()
+  private Dates()
   {
   }
 
@@ -201,7 +201,7 @@ public final class DateUtility
    */
   private static int getMonthRank(final int the_month)
   {
-    return NumberUtility.getPositiveModulo(the_month - FIRST_MONTH, MONTHS_PER_YEAR) + 1;
+    return Numbers.getPositiveModulo(the_month - FIRST_MONTH, MONTHS_PER_YEAR) + 1;
   }
 
   /**

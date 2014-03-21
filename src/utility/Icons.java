@@ -14,13 +14,13 @@ import javax.swing.JOptionPane;
  * @author Phil Adriaan
  * @version 1
  */
-public final class ImageUtility
+public final class Icons
 {
 
   /**
    * This is a utility class. No instatiation necessary.
    */
-  private ImageUtility()
+  private Icons()
   {
   }
 

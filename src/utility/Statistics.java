@@ -11,13 +11,13 @@ import object.IntegerAggregator;
  * @author padriaan
  * @version 1.
  */
-public final class CollectionUtility
+public final class Statistics
 {
 
   /**
    * Prevents instantiation.
    */
-  private CollectionUtility()
+  private Statistics()
   {
 
   }

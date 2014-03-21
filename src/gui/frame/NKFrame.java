@@ -32,7 +32,7 @@ import javax.swing.event.DocumentListener;
 
 import object.DataManager;
 import object.LocationLearner;
-import utility.StringUtility;
+import utility.Strings;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -239,7 +239,7 @@ public class NKFrame extends JFrame
           final String[] selected_split = selected_string.split(", ");
           final int budget_code_index = selected_split.length - 1;
           final String budget_code = selected_split[budget_code_index];
-          location_id = StringUtility.getLocationID(budget_code);
+          location_id = Strings.getLocationID(budget_code);
         }
 
         final List<List<String>> table_data = my_data_manager.getUser(location_id);
@@ -337,7 +337,7 @@ public class NKFrame extends JFrame
             final int item_split_size = item_split.length;
             final int budget_code_index = item_split_size - 1;
             final String budget_code = item_split[budget_code_index];
-            final String current_location_id = StringUtility.getLocationID(budget_code);
+            final String current_location_id = Strings.getLocationID(budget_code);
 
             if (location_id.equals(current_location_id))
             {
@@ -613,7 +613,7 @@ public class NKFrame extends JFrame
   public void setPanel(final PanelEnum the_panel_enum, final String the_message)
       throws IOException
   {
-    setTitle(StringUtility.enumToString(the_panel_enum));
+    setTitle(Strings.enumToString(the_panel_enum));
     if (my_current_component != null)
     {
       remove(my_current_component);

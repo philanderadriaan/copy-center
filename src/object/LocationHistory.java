@@ -4,7 +4,7 @@ package object;
 import java.util.ArrayList;
 import java.util.List;
 
-import utility.CollectionUtility;
+import utility.Statistics;
 
 /**
  * Location history for a single user.
@@ -56,7 +56,7 @@ public class LocationHistory
    */
   public String getMode()
   {
-    final String mode = CollectionUtility.getMode(my_history_list);
+    final String mode = Statistics.getMode(my_history_list);
     return mode;
   }
 
