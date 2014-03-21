@@ -105,7 +105,7 @@ public class LocationLearner
       row.add(0, i);
       histories.add(row);
     }
-    CSVs.write(HISTORY_PATH, histories);
+    CSVs.overwrite(HISTORY_PATH, histories);
   }
 
   /**

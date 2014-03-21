@@ -47,13 +47,13 @@ public final class TXTs
     return data;
   }
 
-  public static void write(final String the_path, final List<String> the_data)
+  public static void overwrite(final String the_path, final List<String> the_data)
       throws IOException
   {
     write(the_path, the_data, false);
   }
 
-  public static void append(final String the_path, final String the_line) throws IOException
+  public static void add(final String the_path, final String the_line) throws IOException
   {
     final List<String> data = new ArrayList<String>();
     data.add(the_line);

@@ -2,9 +2,7 @@
 package utility;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,49 +62,33 @@ public final class CSVs
    * @param the_data Data to be written to the CSV file.
    * @throws IOException Throws exception when error in reading or writing.
    */
-  public static void write(final String the_path, final List<List<String>> the_data)
+  public static void overwrite(final String the_path, final List<List<String>> the_data)
       throws IOException
   {
-    final BufferedWriter writer = new BufferedWriter(new FileWriter(the_path));
-    final StringBuilder builder = new StringBuilder();
+    final List<String> lines = new ArrayList<String>();
     for (List<String> i : the_data)
     {
-      builder.append(i.get(0));
-      for (int j = 1; j < i.size(); j++)
-      {
-        builder.append(',');
-        builder.append(i.get(j));
-      }
-      builder.append("\n");
+      final String line = toLine(i);
+      lines.add(line);
     }
-    writer.write(builder.toString());
-    writer.close();
+    TXTs.overwrite(the_path, lines);
   }
 
   /**
    * Appends a line of data to the end of a CSV file. No commas allowed!
    * 
    * @param the_path Path of CSV file.
-   * @param the_line Line to be added to the CSV file.
+   * @param the_row Line to be added to the CSV file.
    * @throws IOException Throws exception when error in reading or writing.
    */
-  public static void append(final String the_path, final List<String> the_line)
+  public static void add(final String the_path, final List<String> the_row)
       throws IOException
   {
-    final BufferedWriter writer = new BufferedWriter(new FileWriter(the_path, true));
-    final StringBuilder builder = new StringBuilder();
-    builder.append(the_line.get(0));
-    for (int i = 1; i < the_line.size(); i++)
-    {
-      builder.append(',');
-      builder.append(the_line.get(i));
-    }
-    builder.append("\n");
-    writer.append(builder.toString());
-    writer.close();
+    final String line = toLine(the_row);
+    TXTs.add(the_path, line);
   }
 
-  private String toLine(final List<String> the_data)
+  private static String toLine(final List<String> the_data)
   {
     final StringBuilder string_builder = new StringBuilder();
     final String first_column = the_data.get(0);
@@ -117,7 +99,7 @@ public final class CSVs
       final String current_column = the_data.get(i);
       string_builder.append(current_column);
     }
-    String line = string_builder.toString();
+    final String line = string_builder.toString();
     return line;
   }
 }

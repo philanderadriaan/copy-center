@@ -151,7 +151,7 @@ public class DataManager
     my_data.put("Table\\" + order_file_name, empty_list);
 
     final String order_location = "Table\\" + order_file_name;
-    CSVs.write(order_location, empty_list);
+    CSVs.overwrite(order_location, empty_list);
   }
 
   /**
@@ -174,7 +174,7 @@ public class DataManager
       if (is_valid_file)
       {
         my_data.put(i.getPath(), CSVs.read(i.getPath()));
-        CSVs.write(i.getPath(), my_data.get(i.getPath()));
+        CSVs.overwrite(i.getPath(), my_data.get(i.getPath()));
       }
     }
   }
@@ -201,7 +201,7 @@ public class DataManager
     final List<List<String>> data = my_data.get("Table\\" + order_file_name);
     data.add(the_row);
     my_data.put("Table\\" + order_file_name, data);
-    CSVs.append("Table\\" + order_file_name, the_row);
+    CSVs.add("Table\\" + order_file_name, the_row);
   }
 
   /**

@@ -32,9 +32,9 @@ public final class Test
     data.add("w1");
     data.add("w2");
     data.add("w3");
-    TXTs.write("test.txt", data);
-    TXTs.append("test.txt", "a1");
-    TXTs.append("test.txt", "a2");
-    TXTs.write("test.txt", data );
+    TXTs.overwrite("test.txt", data);
+    TXTs.add("test.txt", "a1");
+    TXTs.add("test.txt", "a2");
+    TXTs.overwrite("test.txt", data );
   }
 }
