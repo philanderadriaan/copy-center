@@ -33,8 +33,21 @@ public final class CSVs
    */
   public static List<List<String>> read(final String the_path) throws IOException
   {
+    final List<String> lines = TXTs.read(the_path);
     final List<List<String>> data = new ArrayList<List<String>>();
-
+    
+    for (String i : lines)
+    {
+      String[] row_split = i.split(",");
+      int column_count = row_split.length;
+      
+      if (column_count > 1)
+      {
+        
+      }
+    }
+    
+    
     final BufferedReader reader = new BufferedReader(new FileReader(the_path));
     String line = reader.readLine();
     while (line != null)
