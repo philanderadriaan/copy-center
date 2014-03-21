@@ -56,7 +56,7 @@ public class HeaderManager
   }
 
   /**
-   * Gets the header
+   * Gets the header.
    * 
    * @param the_table Table of the headers.
    * @return A list of strings containing header.

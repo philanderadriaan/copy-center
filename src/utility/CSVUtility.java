@@ -43,7 +43,7 @@ public final class CSVUtility
     {
       if (line.split(",").length > 1)
       {
-        final List<String> l = new ArrayList(Arrays.asList(line.split(",", -1)));
+        final List<String> l = new ArrayList<String>(Arrays.asList(line.split(",", -1)));
         if ("Table\\User.csv".equals(the_path) && "0".equals(l.get(2)))
         {
           l.remove(2);
