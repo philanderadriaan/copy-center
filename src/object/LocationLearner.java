@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import utility.CSVs;
-import utility.TXTs;
+import utility.Texts;
 
 /**
  * This class contains mechanism to learn about user's location according to their histories.
@@ -30,7 +30,7 @@ public class LocationLearner
   /**
    * 
    */
-  private List<String> my_exclusion_list = TXTs.read(EXCLUSION_PATH);
+  private List<String> my_exclusion_list = Texts.read(EXCLUSION_PATH);
 
   /**
    * Map containing history for all selected users.

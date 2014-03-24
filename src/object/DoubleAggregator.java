@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 package object;
 
@@ -24,11 +21,10 @@ public class DoubleAggregator
   private double my_total;
 
   /**
-   * 
+   * Prevents instantiation.
    */
   public DoubleAggregator()
   {
-    // TODO Auto-generated constructor stub
   }
 
   /**

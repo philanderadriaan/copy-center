@@ -2,7 +2,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import utility.TXTs;
+import utility.Texts;
 
 /**
  * This class is used for testing.
@@ -32,9 +32,9 @@ public final class Test
     data.add("w1");
     data.add("w2");
     data.add("w3");
-    TXTs.overwrite("test.txt", data);
-    TXTs.add("test.txt", "a1");
-    TXTs.add("test.txt", "a2");
-    TXTs.overwrite("test.txt", data );
+    Texts.overwrite("test.txt", data);
+    Texts.add("test.txt", "a1");
+    Texts.add("test.txt", "a2");
+    Texts.overwrite("test.txt", data );
   }
 }

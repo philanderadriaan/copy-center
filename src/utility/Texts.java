@@ -15,13 +15,13 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public final class TXTs
+public final class Texts
 {
 
   /**
    * Prevents instantiation.
    */
-  private TXTs()
+  private Texts()
   {
   }
 
@@ -48,10 +48,11 @@ public final class TXTs
   }
 
   /**
+   * Overwrites a text file.
    * 
-   * @param the_path
-   * @param the_data
-   * @throws IOException
+   * @param the_path Path to the text file.
+   * @param the_data Data to write to the file.
+   * @throws IOException If there's error during writing.
    */
   public static void overwrite(final String the_path, final List<String> the_data)
       throws IOException
@@ -60,10 +61,11 @@ public final class TXTs
   }
 
   /**
+   * Adds a line at the end of the file.
    * 
-   * @param the_path
-   * @param the_line
-   * @throws IOException
+   * @param the_path Path to the file. 
+   * @param the_line Line to be added.
+   * @throws IOException If there's error during reading.
    */
   public static void add(final String the_path, final String the_line) throws IOException
   {
@@ -73,16 +75,17 @@ public final class TXTs
   }
 
   /**
+   * Writes data into the text file.
    * 
-   * @param the_path
-   * @param the_data
-   * @param the_append
-   * @throws IOException
+   * @param the_path Path to the file.
+   * @param the_data Data to be written.
+   * @param the_add True to add lines, false to overwrite the whole thing.
+   * @throws IOException If there's error when reading file.
    */
   private static void write(final String the_path, final List<String> the_data,
-                            final boolean the_append) throws IOException
+                            final boolean the_add) throws IOException
   {
-    final FileWriter file_writer = new FileWriter(the_path, the_append);
+    final FileWriter file_writer = new FileWriter(the_path, the_add);
     final BufferedWriter buffered_writer = new BufferedWriter(file_writer);
     final StringBuilder string_builder = new StringBuilder();
     for (String i : the_data)
