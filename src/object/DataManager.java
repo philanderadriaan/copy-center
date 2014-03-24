@@ -53,7 +53,6 @@ public class DataManager
    */
   public DataManager() throws IOException
   {
-
     setOrderTableName();
 
     setTableHeader();
@@ -64,7 +63,6 @@ public class DataManager
     {
       createOrderTable();
     }
-
   }
 
   /**
@@ -242,9 +240,6 @@ public class DataManager
     {
 
       final String date_string = my_output.get(i).get(3);
-      //final String[] date_split = date_string.split("/");
-      //final String month_string = date_split[0];
-      //final int month = Integer.valueOf(month_string);
 
       if (Dates.isBeforeCurrentMonth(date_string))
       {

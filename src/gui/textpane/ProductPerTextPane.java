@@ -21,7 +21,7 @@ public class ProductPerTextPane extends JTextPane
    * Creates the text pane.
    * 
    * @param the_title Title of the document.
-   * @param the_data
+   * @param the_data Data to be displayed.
    */
   public ProductPerTextPane(final String the_title, final List<List<String>> the_data)
   {

@@ -29,7 +29,7 @@ public final class Tables
   /**
    * Sorts the Table.
    * 
-   * @param the_table Table to be sorted.
+   * @param the_table Table to be sorted 
    * @param the_index Index of which the sorting is based on.
    */
   public static void sort(final JTable the_table, final int the_index)

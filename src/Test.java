@@ -23,10 +23,10 @@ public final class Test
   /**
    * Starts the test.
    * 
-   * @param args Command line arguments
+   * @param the_args Command line arguments
    * @throws IOException 
    */
-  public static void main(final String[] args) throws IOException
+  public static void main(final String[] the_args) throws IOException
   {
     final List<String> data = new ArrayList<String>();
     data.add("w1");

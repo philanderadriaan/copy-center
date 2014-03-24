@@ -35,6 +35,14 @@ public final class Dates
    */
   private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
   /**
+   * Enum for year.
+   */
+  private static final int YEAR_ENUM = Calendar.YEAR;
+  /**
+   * Enum for month.
+   */
+  private static final int MONTH_ENUM = Calendar.MONTH;
+  /**
    * Calendar instance containing today's date.
    */
   private static Calendar my_calendar = Calendar.getInstance();
@@ -52,7 +60,7 @@ public final class Dates
   /**
    * Current month in 1 based index. 1=January, 12=December
    */
-  private static int my_current_month = my_date.getMonth() + 1;
+  private static int my_current_month = my_calendar.get(Calendar.MONTH) + 1;
  
   /**
    * Previous month for today in 1 based index. 1=January, 12=December.
@@ -74,7 +82,7 @@ public final class Dates
    */
   public static int getCurrentYear()
   {
-    final int java_year = my_date.getYear();
+    final int java_year = my_calendar.get(Calendar.YEAR);
     final int real_year = UNIX_EPOCH + java_year;
     return real_year;
   }
@@ -158,7 +166,7 @@ public final class Dates
   {
     final Calendar calendar = Calendar.getInstance();
     final Date date = calendar.getTime();
-    date.setDate(1);
+    //date.setDate(1);
     date.setMonth(my_previous_month - 1);
     final String previous_month_string = my_report_format.format(date);
     return previous_month_string;

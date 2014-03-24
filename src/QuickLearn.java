@@ -8,7 +8,7 @@ import utility.CSVs;
  * @author padriaan
  * @version 1
  */
-public class QuickLearn
+public final class QuickLearn
 {
   /**
    * Utility class should not have a public or default constructor.
