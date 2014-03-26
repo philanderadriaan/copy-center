@@ -2,6 +2,7 @@
 package gui.frame;
 
 import java.awt.BorderLayout;
+import java.awt.Cursor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -613,6 +614,7 @@ public class NKFrame extends JFrame
   public void setPanel(final PanelEnum the_panel_enum, final String the_message)
       throws IOException
   {
+    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     setTitle(Strings.enumToString(the_panel_enum));
     if (my_current_component != null)
     {
@@ -714,5 +716,6 @@ public class NKFrame extends JFrame
     add(my_current_component);
     my_current_panel = the_panel_enum;
     validate();
+    this.setCursor(Cursor.getDefaultCursor());
   }
 }
