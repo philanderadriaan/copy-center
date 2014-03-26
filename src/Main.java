@@ -1,6 +1,7 @@
 import gui.frame.NKFrame;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -32,7 +33,9 @@ public final class Main
    */
   public static void main(final String[] the_args)
   {
-
+    System.out.println(Calendar.DECEMBER);
+    System.exit(0);
+    
     try
     {
       for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())

@@ -67,26 +67,5 @@ public class DoubleAggregator
   {
     return my_aggregator_map;
   }
-
-  /**
-   * Gets the key with the highest integer.
-   * 
-   * @return Key with highest integer.
-   */
-  public String getMode()
-  {
-    String highest_key = null;
-    double highest_value = 0;
-    for (String i : my_aggregator_map.keySet())
-    {
-      final double current_value = my_aggregator_map.get(i);
-      if (current_value >= highest_value)
-      {
-        highest_key = i;
-        highest_value = current_value;
-      }
-    }
-    return highest_key;
-  }
-
+  
 }

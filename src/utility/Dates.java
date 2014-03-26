@@ -15,10 +15,6 @@ import java.util.Date;
 public final class Dates
 {
   /**
-   * Start year of unix time.
-   */
-  private static final int UNIX_EPOCH = 1900;
-  /**
    * First month of the school year.
    */
   private static final int FIRST_MONTH = 9;
@@ -35,22 +31,9 @@ public final class Dates
    */
   private static final int MILLISECONDS_PER_WEEK = 1000 * 60 * 60 * 24 * 7;
   /**
-   * Enum for year.
-   */
-  private static final int YEAR_ENUM = Calendar.YEAR;
-  /**
-   * Enum for month.
-   */
-  private static final int MONTH_ENUM = Calendar.MONTH;
-  /**
    * Calendar instance containing today's date.
    */
   private static Calendar my_calendar = Calendar.getInstance();
-
-  /**
-   * Today's date.
-   */
-  private static Date my_date = my_calendar.getTime();
 
   /**
    * Format for reports.
@@ -82,9 +65,8 @@ public final class Dates
    */
   public static int getCurrentYear()
   {
-    final int java_year = my_calendar.get(Calendar.YEAR);
-    final int real_year = UNIX_EPOCH + java_year;
-    return real_year;
+    final int year = my_calendar.get(Calendar.YEAR);
+    return year;
   }
 
   /**
@@ -94,7 +76,8 @@ public final class Dates
    */
   public static String getCurrentMonthFormatted()
   {
-    return my_report_format.format(my_date);
+    Date date = my_calendar.getTime();
+    return my_report_format.format(date);
   }
 
   /**
@@ -104,7 +87,10 @@ public final class Dates
    */
   public static int getCurrentMonth()
   {
-    return my_current_month;
+    int month_enum = Calendar.MONTH;
+    int current_month_0_index = my_calendar.get(month_enum);
+    int current_month_1_index = current_month_0_index + 1;
+    return current_month_1_index;
   }
 
   /**
@@ -154,6 +140,7 @@ public final class Dates
    */
   public static int getPreviousMonth()
   {
+    
     return my_previous_month;
   }
 
