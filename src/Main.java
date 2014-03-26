@@ -33,8 +33,6 @@ public final class Main
    */
   public static void main(final String[] the_args)
   {
-    System.out.println(Calendar.DECEMBER);
-
     try
     {
       for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())
