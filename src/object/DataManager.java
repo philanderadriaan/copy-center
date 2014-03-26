@@ -14,11 +14,11 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-import utility.CSVs;
+import utility.IOcsv;
 import utility.Dates;
 import utility.Folders;
 import utility.Numbers;
-import utility.XLS;
+import utility.IOxls;
 
 /**
  * Holds and manages all the data required for this program.
@@ -149,7 +149,7 @@ public class DataManager
     my_data.put("Table\\" + order_file_name, empty_list);
 
     final String order_location = "Table\\" + order_file_name;
-    CSVs.overwrite(order_location, empty_list);
+    IOcsv.overwrite(order_location, empty_list);
   }
 
   /**
@@ -171,8 +171,8 @@ public class DataManager
       final boolean is_valid_file = !is_order_file || is_valid_order_file;
       if (is_valid_file)
       {
-        my_data.put(i.getPath(), CSVs.read(i.getPath()));
-        CSVs.overwrite(i.getPath(), my_data.get(i.getPath()));
+        my_data.put(i.getPath(), IOcsv.read(i.getPath()));
+        IOcsv.overwrite(i.getPath(), my_data.get(i.getPath()));
       }
     }
   }
@@ -199,7 +199,7 @@ public class DataManager
     final List<List<String>> data = my_data.get("Table\\" + order_file_name);
     data.add(the_row);
     my_data.put("Table\\" + order_file_name, data);
-    CSVs.add("Table\\" + order_file_name, the_row);
+    IOcsv.add("Table\\" + order_file_name, the_row);
   }
 
   /**
@@ -301,7 +301,7 @@ public class DataManager
     my_output.add(new ArrayList<String>());
     my_output.add(Arrays.asList(new String[] {"Total for North Kitsap School District", "",
         Numbers.getMoney(month_total, true), Numbers.getMoney(year_total, true)}));
-    XLS.write("Report/Cost Per Location.xls", my_output);
+    IOxls.write("Report/Cost Per Location.xls", my_output);
 
     return my_output;
   }
@@ -476,7 +476,7 @@ public class DataManager
       aggregation.add(Numbers.getMoney(total_cost.get(i), true));
       excel.add(aggregation);
     }
-    XLS.write("Report/Copies Per Location.xls", excel);
+    IOxls.write("Report/Copies Per Location.xls", excel);
     return excel;
   }
 
@@ -577,7 +577,7 @@ public class DataManager
       total_list.add(description_total_string);
       excel.add(total_list);
     }
-    XLS.write("Report/Product Per Description.xls", excel);
+    IOxls.write("Report/Product Per Description.xls", excel);
     return excel;
   }
 
@@ -675,7 +675,7 @@ public class DataManager
       total_list.add(description_total_string);
       excel.add(total_list);
     }
-    XLS.write("Report/Product Per Location.xls", excel);
+    IOxls.write("Report/Product Per Location.xls", excel);
     return excel;
   }
 

@@ -34,8 +34,7 @@ public final class Main
   public static void main(final String[] the_args)
   {
     System.out.println(Calendar.DECEMBER);
-    System.exit(0);
-    
+
     try
     {
       for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels())

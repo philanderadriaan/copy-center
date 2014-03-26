@@ -15,13 +15,13 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public final class Texts
+public final class IOtxt
 {
 
   /**
    * Prevents instantiation.
    */
-  private Texts()
+  private IOtxt()
   {
   }
 

@@ -12,13 +12,13 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public final class CSVs
+public final class IOcsv
 {
 
   /**
    * Private constructor prevents instantiation.
    */
-  private CSVs()
+  private IOcsv()
   {
   }
 
@@ -31,7 +31,7 @@ public final class CSVs
    */
   public static List<List<String>> read(final String the_path) throws IOException
   {
-    final List<String> lines = Texts.read(the_path);
+    final List<String> lines = IOtxt.read(the_path);
     final List<List<String>> data = new ArrayList<List<String>>();
 
     for (String i : lines)
@@ -42,16 +42,16 @@ public final class CSVs
       if (column_count > 1)
       {
         final String[] exact_row_split = i.split(",", -1);
-        final List<String> fixed_cell_list = Arrays.asList(exact_row_split);
-        final List<String> cell_list = new ArrayList<String>(fixed_cell_list);
         final String user_path = "Table\\User.csv";
 
-        if (user_path.equals(the_path) && "0".equals(fixed_cell_list.get(2)))
+        if (user_path.equals(the_path) && "0".equals(exact_row_split[2]))
         {
-          cell_list.remove(2);
-          cell_list.add("000");
+          exact_row_split[2] = "000";
         }
-        data.add(cell_list);
+        
+        List<String> fixed_row = Arrays.asList(exact_row_split);
+        List<String> row = new ArrayList<String>(fixed_row);
+        data.add(row);
       }
     }
     return data;
@@ -73,7 +73,7 @@ public final class CSVs
       final String line = toLine(i);
       lines.add(line);
     }
-    Texts.overwrite(the_path, lines);
+    IOtxt.overwrite(the_path, lines);
   }
 
   /**
@@ -86,7 +86,7 @@ public final class CSVs
   public static void add(final String the_path, final List<String> the_row) throws IOException
   {
     final String line = toLine(the_row);
-    Texts.add(the_path, line);
+    IOtxt.add(the_path, line);
   }
 
   /**
@@ -100,7 +100,8 @@ public final class CSVs
     final StringBuilder string_builder = new StringBuilder();
     final String first_column = the_data.get(0);
     string_builder.append(first_column);
-    for (int i = 1; i < the_data.size(); i++)
+    final int cell_count = the_data.size();
+    for (int i = 1; i < cell_count; i++)
     {
       string_builder.append(',');
       final String current_column = the_data.get(i);

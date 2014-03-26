@@ -16,13 +16,13 @@ import org.apache.poi.ss.usermodel.Workbook;
  * @author Phil Adriaan
  * @version 1
  */
-public final class XLS
+public final class IOxls
 {
 
   /**
    * Cannot construct this class.
    */
-  private XLS()
+  private IOxls()
   {
   }
 

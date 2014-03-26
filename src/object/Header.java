@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import utility.CSVs;
+import utility.IOcsv;
 import utility.Folders;
 
 /**
@@ -35,7 +35,7 @@ public class Header
     for (File i : file_list)
     {
       final String path = i.getPath();
-      final List<List<String>> data = CSVs.read(path);
+      final List<List<String>> data = IOcsv.read(path);
       final List<String> header = data.get(0);
       my_header_map.put(path, header);
     }
