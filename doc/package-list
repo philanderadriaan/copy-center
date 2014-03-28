@@ -12,5 +12,6 @@ gui.panel.user
 gui.table
 gui.textpane
 gui.toolbar
+io
 object
 utility
