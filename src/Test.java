@@ -1,8 +1,8 @@
+import io.TXT;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import utility.IOtxt;
 
 /**
  * This class is used for testing.
@@ -32,9 +32,9 @@ public final class Test
     data.add("w1");
     data.add("w2");
     data.add("w3");
-    IOtxt.overwrite("test.txt", data);
-    IOtxt.add("test.txt", "a1");
-    IOtxt.add("test.txt", "a2");
-    IOtxt.overwrite("test.txt", data );
+    TXT.overwrite("test.txt", data);
+    TXT.add("test.txt", "a1");
+    TXT.add("test.txt", "a2");
+    TXT.overwrite("test.txt", data );
   }
 }

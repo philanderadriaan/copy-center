@@ -1,5 +1,5 @@
 
-package utility;
+package io;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,19 +10,21 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import utility.Strings;
+
 /**
  * Utility for reading and writing to excel files.
  * 
  * @author Phil Adriaan
  * @version 1
  */
-public final class IOxls
+public final class XLS
 {
 
   /**
    * Cannot construct this class.
    */
-  private IOxls()
+  private XLS()
   {
   }
 

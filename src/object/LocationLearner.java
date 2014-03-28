@@ -1,14 +1,14 @@
 
 package object;
 
+import io.CSV;
+import io.TXT;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import utility.IOcsv;
-import utility.IOtxt;
 
 /**
  * This class contains mechanism to learn about user's location according to their histories.
@@ -30,7 +30,7 @@ public class LocationLearner
   /**
    * 
    */
-  private List<String> my_exclusion_list = IOtxt.read(EXCLUSION_PATH);
+  private List<String> my_exclusion_list = TXT.read(EXCLUSION_PATH);
 
   /**
    * Map containing history for all selected users.
@@ -47,7 +47,7 @@ public class LocationLearner
   public LocationLearner() throws IOException
   {
 
-    final List<List<String>> histories = IOcsv.read(HISTORY_PATH);
+    final List<List<String>> histories = CSV.read(HISTORY_PATH);
 
     for (List<String> i : histories)
     {
@@ -104,7 +104,7 @@ public class LocationLearner
       row.add(0, i);
       histories.add(row);
     }
-    IOcsv.overwrite(HISTORY_PATH, histories);
+    CSV.overwrite(HISTORY_PATH, histories);
   }
 
   /**

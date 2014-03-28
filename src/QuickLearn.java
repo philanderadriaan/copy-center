@@ -1,8 +1,9 @@
+import io.CSV;
+
 import java.io.IOException;
 import java.util.List;
 
 import object.LocationLearner;
-import utility.IOcsv;
 
 /**
  * @author padriaan
@@ -29,7 +30,7 @@ public final class QuickLearn
   {
     final LocationLearner skynet = new LocationLearner();
     skynet.clear();
-    final List<List<String>> order = IOcsv.read("Table\\Order2013-2014.csv");
+    final List<List<String>> order = CSV.read("Table\\Order2013-2014.csv");
     for (List<String> i : order)
     {
       final String location = i.get(0);

@@ -4,13 +4,14 @@
 
 package object;
 
+import io.TXT;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import utility.IOcsv;
 import utility.Folders;
 
 /**
@@ -19,24 +20,23 @@ import utility.Folders;
  */
 public class Header
 {
-  
+
   /**
    * Maps all the headers to table names.
    */
   private Map<String, List<String>> my_header_map = new HashMap<String, List<String>>();
 
   /**
-   * @throws IOException 
+   * @throws IOException
    * 
    */
-  public Header() throws IOException
+  public Header(String the_folder) throws IOException
   {
-    final List<File> file_list = Folders.getFiles("Header");
+    final List<File> file_list = Folders.getFiles(the_folder);
     for (File i : file_list)
     {
       final String path = i.getPath();
-      final List<List<String>> data = IOcsv.read(path);
-      final List<String> header = data.get(0);
+      final List<String> header = TXT.read(path);
       my_header_map.put(path, header);
     }
   }

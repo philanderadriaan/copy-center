@@ -1,0 +1,10 @@
+Location
+Last Name
+First Name
+Description
+Job Date
+Bill Date
+Unit Price
+Quantity
+Percent Discount
+Job Cost

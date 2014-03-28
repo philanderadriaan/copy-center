@@ -1,5 +1,5 @@
 
-package utility;
+package io;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -15,13 +15,13 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public final class IOtxt
+public final class TXT
 {
 
   /**
    * Prevents instantiation.
    */
-  private IOtxt()
+  private TXT()
   {
   }
 

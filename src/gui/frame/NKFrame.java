@@ -32,6 +32,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import object.DataManager;
+import object.Header;
 import object.LocationLearner;
 import utility.Strings;
 
@@ -62,6 +63,10 @@ import gui.toolbar.NKToolBar;
 @SuppressWarnings("serial")
 public class NKFrame extends JFrame
 {
+  /**
+   * Object to store headers.
+   */
+  private Header my_headers = new Header("Header");
 
   /**
    * Holds the current instance of all data required for the program.

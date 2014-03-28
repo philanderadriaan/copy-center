@@ -1,5 +1,5 @@
 
-package utility;
+package io;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,13 +12,13 @@ import java.util.List;
  * @author padriaan
  * @version 1
  */
-public final class IOcsv
+public final class CSV
 {
 
   /**
    * Private constructor prevents instantiation.
    */
-  private IOcsv()
+  private CSV()
   {
   }
 
@@ -31,7 +31,7 @@ public final class IOcsv
    */
   public static List<List<String>> read(final String the_path) throws IOException
   {
-    final List<String> lines = IOtxt.read(the_path);
+    final List<String> lines = TXT.read(the_path);
     final List<List<String>> data = new ArrayList<List<String>>();
 
     for (String i : lines)
@@ -73,7 +73,7 @@ public final class IOcsv
       final String line = toLine(i);
       lines.add(line);
     }
-    IOtxt.overwrite(the_path, lines);
+    TXT.overwrite(the_path, lines);
   }
 
   /**
@@ -86,7 +86,7 @@ public final class IOcsv
   public static void add(final String the_path, final List<String> the_row) throws IOException
   {
     final String line = toLine(the_row);
-    IOtxt.add(the_path, line);
+    TXT.add(the_path, line);
   }
 
   /**
