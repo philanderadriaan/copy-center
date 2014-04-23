@@ -302,7 +302,7 @@ public class DataManager
     my_output.add(new ArrayList<String>());
     my_output.add(Arrays.asList(new String[] {"Total for North Kitsap School District", "",
         Numbers.getMoney(month_total, true), Numbers.getMoney(year_total, true)}));
-    XLS.write("Report/Cost Per Location.xls", my_output);
+    XLS.overwrite("Report/Cost Per Location.xls", my_output);
 
     return my_output;
   }
@@ -477,7 +477,7 @@ public class DataManager
       aggregation.add(Numbers.getMoney(total_cost.get(i), true));
       excel.add(aggregation);
     }
-    XLS.write("Report/Copies Per Location.xls", excel);
+    XLS.overwrite("Report/Copies Per Location.xls", excel);
     return excel;
   }
 
@@ -578,7 +578,7 @@ public class DataManager
       total_list.add(description_total_string);
       excel.add(total_list);
     }
-    XLS.write("Report/Product Per Description.xls", excel);
+    XLS.overwrite("Report/Product Per Description.xls", excel);
     return excel;
   }
 
@@ -676,7 +676,7 @@ public class DataManager
       total_list.add(description_total_string);
       excel.add(total_list);
     }
-    XLS.write("Report/Product Per Location.xls", excel);
+    XLS.overwrite("Report/Product Per Location.xls", excel);
     return excel;
   }
 

@@ -35,7 +35,7 @@ public final class XLS
    * @param the_data Raw data of all Table.
    * @throws IOException For reading and writing errors.
    */
-  public static void write(final String the_path, final List<List<String>> the_data)
+  public static void overwrite(final String the_path, final List<List<String>> the_data)
       throws IOException
   {
     final Workbook book = new HSSFWorkbook();
