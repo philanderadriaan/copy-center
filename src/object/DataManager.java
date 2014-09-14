@@ -206,7 +206,6 @@ public class DataManager
       {
         my_data.put(i.getPath(), CSV.read(i.getPath()));
         CSV.overwrite(i.getPath(), my_data.get(i.getPath()));
-        System.out.println(i.getPath());
       }
     }
     
