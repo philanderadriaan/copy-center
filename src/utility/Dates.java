@@ -44,12 +44,12 @@ public final class Dates
    * Current month in 1 based index. 1=January, 12=December
    */
   private static int my_current_month = my_calendar.get(Calendar.MONTH) + 1;
- 
+
   /**
    * Previous month for today in 1 based index. 1=January, 12=December.
    */
   private static int my_previous_month = Numbers.getPositiveModulo(my_current_month - 2,
-                                                                         MONTHS_PER_YEAR) + 1;
+                                                                   MONTHS_PER_YEAR) + 1;
 
   /**
    * Utility class. Private constructor prevents instantiation.
@@ -76,7 +76,7 @@ public final class Dates
    */
   public static String getCurrentMonthFormatted()
   {
-    Date date = my_calendar.getTime();
+    final Date date = my_calendar.getTime();
     return my_report_format.format(date);
   }
 
@@ -87,9 +87,9 @@ public final class Dates
    */
   public static int getCurrentMonth()
   {
-    int month_enum = Calendar.MONTH;
-    int current_month_0_index = my_calendar.get(month_enum);
-    int current_month_1_index = current_month_0_index + 1;
+    final int month_enum = Calendar.MONTH;
+    final int current_month_0_index = my_calendar.get(month_enum);
+    final int current_month_1_index = current_month_0_index + 1;
     return current_month_1_index;
   }
 
@@ -128,7 +128,7 @@ public final class Dates
    * 
    * @return Month number of first month.
    */
-  public static int getFirstMonth()
+  public static int getFirstMonthOfYear()
   {
     return FIRST_MONTH;
   }
@@ -140,7 +140,7 @@ public final class Dates
    */
   public static int getPreviousMonth()
   {
-    
+
     return my_previous_month;
   }
 
@@ -153,7 +153,7 @@ public final class Dates
   {
     final Calendar calendar = Calendar.getInstance();
     final Date date = calendar.getTime();
-    //date.setDate(1);
+    // date.setDate(1);
     date.setMonth(my_previous_month - 1);
     final String previous_month_string = my_report_format.format(date);
     return previous_month_string;
@@ -168,9 +168,22 @@ public final class Dates
   public static boolean isBeforeCurrentMonth(final String the_date_string)
   {
     final int month = getMonthFromString(the_date_string);
-    final int month_rank = getMonthRank(month);
-    final int this_month_number = getMonthRank(my_current_month);
-    final boolean before_this_month = month_rank < this_month_number;
+    final int year = getYearFromString(the_date_string);
+
+    final Calendar today = Calendar.getInstance();
+
+    final int current_month = today.get(Calendar.MONTH) + 1;
+    final int current_year = today.get(Calendar.YEAR);
+
+    final boolean is_previous_year = year < current_year;
+    final boolean is_current_year = year == current_year;
+
+    final boolean before_this_month = is_previous_year || (is_current_year && month < current_month);
+
+    // final int month_rank = getMonthRank(month);
+    // final int this_month_number = getMonthRank(my_current_month);
+    // final boolean before_this_month = month_rank < this_month_number;
+
     return before_this_month;
   }
 
@@ -212,5 +225,20 @@ public final class Dates
     final String month_string = date_split[month_index];
     final int month = Integer.valueOf(month_string);
     return month;
+  }
+
+  /**
+   * Gets the month out of a string of date in M/d/yyyy.
+   * 
+   * @param the_date_string Date in M/d/yyyy.
+   * @return Month on that date.
+   */
+  private static int getYearFromString(final String the_date_string)
+  {
+    final String[] date_split = the_date_string.split("/");
+    final int year_index = 2;
+    final String month_string = date_split[year_index];
+    final int year = Integer.valueOf(month_string);
+    return year;
   }
 }
