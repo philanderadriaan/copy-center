@@ -222,7 +222,6 @@ public class DataManager
     	new_data.addAll(old_data);
     	
     	my_data.put(new_data_path, new_data);
-    	System.out.println(new_data_path);
     }
   }
 
