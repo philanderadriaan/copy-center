@@ -140,7 +140,7 @@ public class DataManager
     order_file_name_builder.append(".csv");
     order_file_name = order_file_name_builder.toString();
   }
-  
+
   /**
    * Sets previous year order file name.
    */
@@ -165,7 +165,6 @@ public class DataManager
     builder.append(".csv");
     previous_order_file_name = builder.toString();
   }
-  
 
   /**
    * Create the table for the orders if the appropriate order file is not
@@ -201,27 +200,27 @@ public class DataManager
       final boolean is_valid_order_file =
           is_order_file && order_file_name.equalsIgnoreCase(file_name);
       final boolean is_valid_file = !is_order_file || is_valid_order_file;
-      
+
       if (is_valid_file)
       {
         my_data.put(i.getPath(), CSV.read(i.getPath()));
         CSV.overwrite(i.getPath(), my_data.get(i.getPath()));
       }
     }
-    
+
     final int current_month = Dates.getCurrentMonth();
     final int first_month = Dates.getFirstMonthOfYear();
     if (current_month == first_month)
     {
-    	final String old_data_path = "Table\\" + previous_order_file_name;
-    	final String new_data_path = "Table\\" + order_file_name;
-    	
-    	final List<List<String>> old_data = CSV.read(old_data_path);
-    	final List<List<String>> new_data = CSV.read(new_data_path);
-    	
-    	new_data.addAll(old_data);
-    	
-    	my_data.put(new_data_path, new_data);
+      final String old_data_path = "Table\\" + previous_order_file_name;
+      final String new_data_path = "Table\\" + order_file_name;
+
+      final List<List<String>> old_data = CSV.read(old_data_path);
+      final List<List<String>> new_data = CSV.read(new_data_path);
+
+      new_data.addAll(old_data);
+
+      my_data.put(new_data_path, new_data);
     }
   }
 
